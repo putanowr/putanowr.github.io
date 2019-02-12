@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Demos</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-12-23"><meta name="DC.source" content="list_of_demos.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Demos</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Demo execution status</a></li><li><a href="#2">Whole engine demos</a></li><li><a href="#3">Interface function demos</a></li><li><a href="#4">Geometric models demos</a></li><li><a href="#5">Mesher demos</a></li><li><a href="#6">Object oriented interface demos</a></li><li><a href="#7">Other demos</a></li></ul></div><h2 id="1">Demo execution status</h2><pre class="codeoutput">Demos executed at: 23-Dec-2018 10:42:13
+
+demo                       triangles_vs_quads | 1 |     9.37
+demo                           rectangle_mesh | 1 |     1.45
+demo                           circ_hole_mesh | 1 |     1.58
+demo                       edges_in_triangles | 1 |     1.58
+demo                       highlight_elements | 1 |     1.56
+demo                          highlight_nodes | 1 |     2.26
+demo                            kernel_beam3D | 1 |    63.67
+demo                            kernel_square | 1 |    30.58
+demo                        kernel_squareHole | 1 |     8.70
+demo                     kernel_thermalSquare | 1 |     4.29
+demo                                   labels | 1 |     0.91
+demo                  LShape_convergence_MFDM | 1 |     0.28
+demo                    LShape_fixed_mesh_FEM | 1 |     6.00
+demo                               LShapeGeom | 1 |     2.94
+demo                    LShapeGeom_refinement | 1 |    56.85
+demo                          LShapeIfaceGeom | 1 |     1.83
+demo                  LShapeIfaceGeom_queries | 1 |     3.78
+demo            LShapeIfaceGeom_nonconforming | 1 |     1.41
+demo                  LShapeIfaceGeom_normals | 1 |     1.93
+demo                              lshape_mesh | 1 |     0.97
+demo                         Mesh_edgeCenters | 1 |     1.13
+demo                         Mesh_faceCenters | 1 |     0.68
+demo                Mesh_parent_child_submesh | 1 |     2.25
+demo                             Mesh_submesh | 1 |     1.36
+demo                            Mesher_square | 1 |     1.21
+demo                       Mesher_globalField | 1 |     3.10
+demo                        Mesher_refinement | 1 |     1.56
+demo                              MeshFactory | 1 |     1.99
+demo                             mesh_factory | 1 |     4.54
+demo                          mp_enumerations | 1 |     0.46
+demo                         mp_elems_centers | 1 |     0.91
+demo                        mp_face_edge_data | 1 |     1.37
+demo             mp_face_edge_data_at_regions | 1 |     1.72
+demo                             mp_GeomTrans | 1 |     0.85
+demo                            mp_map_circle | 1 |     0.45
+demo                              mp_readMesh | 1 |     0.45
+demo                         mp_tagging_nodes | 1 |     1.60
+demo                      mp_get_tagged_nodes | 1 |     1.48
+demo                      mp_get_tagged_edges | 1 |     3.01
+demo                      mp_tag_region_nodes | 1 |     1.67
+demo                            mp_view_stars | 1 |     3.93
+demo                            NotchedRQGeom | 1 |     2.16
+demo                           SquareHoleGeom | 1 |     1.70
+demo                                  TSHGeom | 1 |     8.98
+demo                        twin_squares_mesh | 1 |     2.39
+demo                                   Viewer | 1 |     0.86
+demo                                  voids2D | 1 |     1.09
+</pre><h2 id="2">Whole engine demos</h2><p>
+</p><ul>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_kernel_beam3D.html">demo_kernel_beam3D</a> run kernel calculations on beam3D geom model</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_kernel_square.html">demo_kernel_square</a> run kernel calculations on square geom model</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_kernel_squareHole.html">demo_kernel_squareHole</a> run kernel calculations on squareHole geom model</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_kernel_thermalSquare.html">demo_kernel_thermalSquare</a> heat transfer in a square domain</li>
+<!--<li><a href="demo_kernel_squareInterface.html">demo_kernel_squareInterface</a> run kernel calculations on squareInterface geom model</li>-->
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShape_fixed_mesh_FEM.html">demo_LShape_fixed_mesh_FEM</a> run calculations for LShape, FEM, fixed mesh</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShape_convergence_MFDM.html">demo_LShape_convergence_MFDM</a> run calculations for LShape, local MFDM, convergence</li>
+</ul>
+<p></p><h2 id="3">Interface function demos</h2><p>
+</p><ul>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_get_tagged_nodes.html">demo_mp_get_tagged_nodes</a> Get tagged nodes in regions</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_tag_region_nodes.html">demo_mp_tag_region_nodes</a> Show how to tag all nodes</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_get_tagged_edges.html">demo_mp_get_tagged_edges</a> Get tagged edges in regions</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_face_edge_data_at_regions.html">demo_mp_face_edge_data_at_regions</a> Get normals and tangent vector for element edges and nodes at specified regions.</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_face_edge_data.html">demo_mp_face_edge_data</a> illustrate calculation of edge data for faces</li>
+</ul>
+<p></p><h2 id="4">Geometric models demos</h2><p>
+</p><ul>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShapeGeom.html">demo_LShapeGeom</a> Managing mesh density - example using L-shape geometry</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShapeGeom_refinement.html">demo_LShapeGeom_refinement</a> Mesh density as function of lc parameter</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShapeIfaceGeom.html">demo_LShapeIfaceGeom</a> Geometric model with interface (internal boundary)</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShapeIfaceGeom_queries.html">demo_LShapeIfaceGeom_queries</a> Illustrate queries about interface</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShapeIfaceGeom_nonconforming.html">demo_LShapeIfaceGeom_nonconforming</a> Non-conforming meshing of sudomains</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_LShapeIfaceGeom_normals.html">demo_LShapeIfaceGeom_normals</a>Normals at edges in separate regions</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_NotchedRQGeom.html">demo_NotchedRQGeom</a> Geometric doman of quarter of notched rectangle</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_SquareHoleGeom.html">demo_SquareHoleGeom</a> Square with circular hole</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_TSHGeom.html">demo_TSHGeom</a> Complex geometry and mesh handing for THS geometry</li>
+</ul>
+<p></p><h2 id="5">Mesher demos</h2><p>
+</p><ul>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Mesher_square.html">demo_Mesher_square</a> use Mesher to generate mesh in a square</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Mesher_globalField.html">demo_Mesher_globalField</a> mesh density control via global size field</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Mesher_refinement.html">demo_Mesher_refinement</a> uniform mesh refinement</li>
+</ul>
+<p></p><h2 id="6">Object oriented interface demos</h2><p>
+</p><ul>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_enumerations.html">demo_mp_enumerations</a> Show how to use enum values for categorical data</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_MeshFactory.html">demo_MeshFactory</a> use MeshFactory and Viewer to show built-in meshes</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_elems_centers.html">demo_mp_elems_centers</a> Show how to select elements and access node coordinates</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Mesh_edgeCenters.html">demo_Mesh_edgeCenters</a> Show how to get edge centers for a Mesh</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Mesh_faceCenters.html">demo_Mesh_faceCenters</a> Show how to get face centers for a Mesh</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Mesh_parent_child_submesh.html">demo_Mesh_parent_child_submesh</a> Show mapping from child to parent nodes and elements</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Mesh_submesh.html">demo_Mesh_submesh</a> Show how create submes from regions</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_readMesh.html">demo_mp_readMesh</a> Show how to read file into a Mesh object</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_view_stars.html">demo_mp_view_stars</a> Calculate and show mesh etities stars</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_Viewer.html">demo_Viewer</a> Display geometry</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_tagging_nodes.html">demo_mp_tagging_nodes</a> Tag and visualize nodes in regions</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_map_circle.html">demo_mp_map_circle</a> Use geometric transformation to map interior of an element</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mp_GeomTrans.html">demo_mp_GeomTrans</a> Illustrate usage of GeomTrans </li>
+</ul>
+<p></p><h2 id="7">Other demos</h2><p>
+</p><ul>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_edges_in_triangles.html">demo_edges_in_triangles</a> Show numbering of edges in traingles</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_circ_hole_mesh.html">demo_circ_hole_mesh</a> mesh in region with circular hole</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_highlight_nodes.html">demo_highlight_nodes</a> highlight selected nodes</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_highlight_elements.html">demo_highlight_elements</a> highlight selected elements</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_labels.html">demo_labels</a> label mesh elements</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_lshape_mesh.html">demo_lshape_mesh</a> generate mesh in L-shaped domain</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_mesh_factory.html">demo_mesh_factory</a> generate several meshes for testing purposes</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_rectangle_mesh.html">demo_rectangle_mesh</a> generate mesh in rectangle</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_triangles_vs_quads.html">demo_triangles_vs_quads</a> mesh in region with circular hole</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_twin_squares_mesh.html">demo_twin_squares_mesh</a> mesh of squares with non-linear common boundary</li>
+<li><a href="http://cae.l5.pk.edu.pl:8080/view/combMESBMRS/job/combMESBMRS_romek_demos/combMESBMRS_5fDemos/demo_voids2D.html">demo_voids2D</a> mesh rectangular domain with circular voids</li>
+</ul>
+<p></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB® R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Demos
+%
+%% Demo execution status
+fprintf('Demos executed at: %s\n\n', datestr(now))
+mp_manage_demos('print')
+%% Whole engine demos
+% <html>
+% <ul>
+% <li><a href="demo_kernel_beam3D.html">demo_kernel_beam3D</a> run kernel calculations on beam3D geom model</li>
+% <li><a href="demo_kernel_square.html">demo_kernel_square</a> run kernel calculations on square geom model</li>
+% <li><a href="demo_kernel_squareHole.html">demo_kernel_squareHole</a> run kernel calculations on squareHole geom model</li>
+% <li><a href="demo_kernel_thermalSquare.html">demo_kernel_thermalSquare</a> heat transfer in a square domain</li>
+% <!REPLACE_WITH_DASH_DASH<li><a href="demo_kernel_squareInterface.html">demo_kernel_squareInterface</a> run kernel calculations on squareInterface geom model</li>REPLACE_WITH_DASH_DASH>
+% <li><a href="demo_LShape_fixed_mesh_FEM.html">demo_LShape_fixed_mesh_FEM</a> run calculations for LShape, FEM, fixed mesh</li>
+% <li><a href="demo_LShape_convergence_MFDM.html">demo_LShape_convergence_MFDM</a> run calculations for LShape, local MFDM, convergence</li>
+% </ul>
+% </html>
+%
+%% Interface function demos
+% <html>
+% <ul>
+% <li><a href="demo_mp_get_tagged_nodes.html">demo_mp_get_tagged_nodes</a> Get tagged nodes in regions</li>
+% <li><a href="demo_mp_tag_region_nodes.html">demo_mp_tag_region_nodes</a> Show how to tag all nodes</li>
+% <li><a href="demo_mp_get_tagged_edges.html">demo_mp_get_tagged_edges</a> Get tagged edges in regions</li>
+% <li><a href="demo_mp_face_edge_data_at_regions.html">demo_mp_face_edge_data_at_regions</a> Get normals and tangent vector for element edges and nodes at specified regions.</li>
+% <li><a href="demo_mp_face_edge_data.html">demo_mp_face_edge_data</a> illustrate calculation of edge data for faces</li>
+% </ul>
+% </html>
+%
+%% Geometric models demos
+% <html>
+% <ul>
+% <li><a href="demo_LShapeGeom.html">demo_LShapeGeom</a> Managing mesh density - example using L-shape geometry</li>
+% <li><a href="demo_LShapeGeom_refinement.html">demo_LShapeGeom_refinement</a> Mesh density as function of lc parameter</li>
+% <li><a href="demo_LShapeIfaceGeom.html">demo_LShapeIfaceGeom</a> Geometric model with interface (internal boundary)</li>
+% <li><a href="demo_LShapeIfaceGeom_queries.html">demo_LShapeIfaceGeom_queries</a> Illustrate queries about interface</li>
+% <li><a href="demo_LShapeIfaceGeom_nonconforming.html">demo_LShapeIfaceGeom_nonconforming</a> Non-conforming meshing of sudomains</li>
+% <li><a href="demo_LShapeIfaceGeom_normals.html">demo_LShapeIfaceGeom_normals</a>Normals at edges in separate regions</li>
+% <li><a href="demo_NotchedRQGeom.html">demo_NotchedRQGeom</a> Geometric doman of quarter of notched rectangle</li>
+% <li><a href="demo_SquareHoleGeom.html">demo_SquareHoleGeom</a> Square with circular hole</li>
+% <li><a href="demo_TSHGeom.html">demo_TSHGeom</a> Complex geometry and mesh handing for THS geometry</li>
+% </ul>
+% </html>
+%
+%% Mesher demos
+% <html>
+% <ul>
+% <li><a href="demo_Mesher_square.html">demo_Mesher_square</a> use Mesher to generate mesh in a square</li>
+% <li><a href="demo_Mesher_globalField.html">demo_Mesher_globalField</a> mesh density control via global size field</li>
+% <li><a href="demo_Mesher_refinement.html">demo_Mesher_refinement</a> uniform mesh refinement</li>
+% </ul>
+% </html>
+%% Object oriented interface demos
+% <html>
+% <ul>
+% <li><a href="demo_mp_enumerations.html">demo_mp_enumerations</a> Show how to use enum values for categorical data</li>
+% <li><a href="demo_MeshFactory.html">demo_MeshFactory</a> use MeshFactory and Viewer to show built-in meshes</li>
+% <li><a href="demo_mp_elems_centers.html">demo_mp_elems_centers</a> Show how to select elements and access node coordinates</li>
+% <li><a href="demo_Mesh_edgeCenters.html">demo_Mesh_edgeCenters</a> Show how to get edge centers for a Mesh</li>
+% <li><a href="demo_Mesh_faceCenters.html">demo_Mesh_faceCenters</a> Show how to get face centers for a Mesh</li>
+% <li><a href="demo_Mesh_parent_child_submesh.html">demo_Mesh_parent_child_submesh</a> Show mapping from child to parent nodes and elements</li>
+% <li><a href="demo_Mesh_submesh.html">demo_Mesh_submesh</a> Show how create submes from regions</li>
+% <li><a href="demo_mp_readMesh.html">demo_mp_readMesh</a> Show how to read file into a Mesh object</li>
+% <li><a href="demo_mp_view_stars.html">demo_mp_view_stars</a> Calculate and show mesh etities stars</li>
+% <li><a href="demo_Viewer.html">demo_Viewer</a> Display geometry</li>
+% <li><a href="demo_mp_tagging_nodes.html">demo_mp_tagging_nodes</a> Tag and visualize nodes in regions</li>
+% <li><a href="demo_mp_map_circle.html">demo_mp_map_circle</a> Use geometric transformation to map interior of an element</li>
+% <li><a href="demo_mp_GeomTrans.html">demo_mp_GeomTrans</a> Illustrate usage of GeomTrans </li>
+% </ul>
+% </html>
+%
+%% Other demos
+% <html>
+% <ul>
+% <li><a href="demo_edges_in_triangles.html">demo_edges_in_triangles</a> Show numbering of edges in traingles</li>
+% <li><a href="demo_circ_hole_mesh.html">demo_circ_hole_mesh</a> mesh in region with circular hole</li>
+% <li><a href="demo_highlight_nodes.html">demo_highlight_nodes</a> highlight selected nodes</li>
+% <li><a href="demo_highlight_elements.html">demo_highlight_elements</a> highlight selected elements</li>
+% <li><a href="demo_labels.html">demo_labels</a> label mesh elements</li>
+% <li><a href="demo_lshape_mesh.html">demo_lshape_mesh</a> generate mesh in L-shaped domain</li>
+% <li><a href="demo_mesh_factory.html">demo_mesh_factory</a> generate several meshes for testing purposes</li>
+% <li><a href="demo_rectangle_mesh.html">demo_rectangle_mesh</a> generate mesh in rectangle</li>
+% <li><a href="demo_triangles_vs_quads.html">demo_triangles_vs_quads</a> mesh in region with circular hole</li>
+% <li><a href="demo_twin_squares_mesh.html">demo_twin_squares_mesh</a> mesh of squares with non-linear common boundary</li>
+% <li><a href="demo_voids2D.html">demo_voids2D</a> mesh rectangular domain with circular voids</li>
+% </ul>
+% </html>
+
+##### SOURCE END #####
+--></body></html>
