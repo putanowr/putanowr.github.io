@@ -1,0 +1,206 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Show how to calculate normals at edges</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_LShapeIfaceGeom_normals.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Show how to calculate normals at edges</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Summary of the demo</a></li><li><a href="#2">Create Mesher object</a></li><li><a href="#3">Create object describing geometric model</a></li><li><a href="#4">Prepare regions selectors</a></li><li><a href="#5">Generate mesh</a></li><li><a href="#6">Visualize mesh</a></li><li><a href="#7">Edge data in elements</a></li><li><a href="#8">Create edges selector</a></li><li><a href="#9">Get edges data in regions with id=1</a></li><li><a href="#10">Visualization normal and tangent vectors at nodes of the region edges with tag 1</a></li></ul></div><h2 id="1">Summary of the demo</h2><p>This demo illustrates how to calculate tangent and normal vectors of edges and how to average it to vertices.</p><pre class="codeinput">clear <span class="string">variables</span>;
+</pre><h2 id="2">Create Mesher object</h2><p>When Mesher object is created it takes care of initializing interface to GMSH mesh generator</p><pre class="codeinput">mesher = mp.Mesher();
+</pre><h2 id="3">Create object describing geometric model</h2><pre class="codeinput">geom = mp.geoms.LShapeIfaceGeom(<span class="string">'my_domain'</span>);
+geom.params.dW = 3;
+geom.params.dH = 4;
+geom.params.dt = 1.5;
+
+<span class="comment">%</span>
+<span class="comment">% Relative placement of interface endpoints.</span>
+geom.params.fA = 0.5;
+geom.params.fB = 0.2;
+
+<span class="comment">% Specify that desired type of element fo the upper subdomain in quad.</span>
+geom.params.quads=[0,1];
+
+<span class="comment">% Get names of geometric regions to be later used in selective meshing</span>
+<span class="comment">% of regions.</span>
+regs = geom.regions();
+</pre><h2 id="4">Prepare regions selectors</h2><pre class="codeinput">regT = [2,4,7,8];
+regB = [1,3,5,6,8];
+</pre><h2 id="5">Generate mesh</h2><pre class="codeinput">mesh1 = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.8, <span class="string">'regionsToMesh'</span>, {regs(regT)}));
+mesh2 = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.4, <span class="string">'regionsToMesh'</span>, {regs(regB)}));
+
+mp.translateMesh(mesh1, [0,1,0]);
+</pre><h2 id="6">Visualize mesh</h2><p>The simplest way to visualize mesh is to use Viewer class.</p><pre class="codeinput">viewer = mp.Viewer();
+viewer.show(mesh1);
+viewer.show(mesh2);
+</pre><img vspace="5" hspace="5" src="demo_LShapeIfaceGeom_normals_01.png" alt=""> <h2 id="7">Edge data in elements</h2><p>Caclulate edge flags, edge tangent vector and edge normal vector for each element</p><h2 id="8">Create edges selector</h2><p>The LShapeGeom geometric model distinguishes boundary endges as well as their subsets. Here we prepare selector that will assign tag 1 1 to ordinary boundary edges and tag 3 to interface edges.</p><pre class="codeinput">bcSelector.d_subBottom = 0;
+bcSelector.d_subTop = 0;
+bcSelector.b_bottom  = 1;
+bcSelector.b_left_top = 1;
+bcSelector.b_left_bottom = 1;
+bcSelector.b_other_bottom = 1;
+bcSelector.b_other_top = 1;
+bcSelector.i_interface = 3;
+
+<span class="comment">% The use of Tagger is optional. Tagger object give the ability to precisely</span>
+<span class="comment">% specify which tags are assigned if mesh elements belongs to multile</span>
+<span class="comment">% regions. If one is not interested in such fine control it is enough to</span>
+<span class="comment">% use 'default' string in place of tagger argument.</span>
+tagger = mp.Tagger(<span class="string">'priority'</span>, [0,0; 1, 100; 2,50; 3,25]);
+</pre><h2 id="9">Get edges data in regions with id=1</h2><pre class="codeinput">tagsForVertexNormals = [1,3];
+[elemEdgeTags, elemTan, elemNor, nodeTan, nodeNor] = mp_face_edge_data_at_regions(mesh1, tagsForVertexNormals, bcSelector, tagger);
+</pre><h2 id="10">Visualization normal and tangent vectors at nodes of the region edges with tag 1</h2><pre class="codeinput"><span class="comment">% Plot arrows for tangent and normal vectors</span>
+hold <span class="string">on</span>;
+quiver(mesh1.nodes(:,1), mesh1.nodes(:,2), nodeTan(:,1), nodeTan(:,2), 0.3, <span class="string">'LineWidth'</span>, 1, <span class="string">'Color'</span>, <span class="string">'red'</span>);
+quiver(mesh1.nodes(:,1), mesh1.nodes(:,2), nodeNor(:,1), nodeNor(:,2), 0.3, <span class="string">'LineWidth'</span>, 1, <span class="string">'Color'</span>, <span class="string">'blue'</span>);
+</pre><img vspace="5" hspace="5" src="demo_LShapeIfaceGeom_normals_02.png" alt=""> <p>Internal management of demo</p><pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'LShapeIfaceGeom_normals'</span>, true);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Show how to calculate normals at edges
+
+%% Summary of the demo
+% This demo illustrates how to calculate tangent and normal vectors
+% of edges and how to average it to vertices.
+
+clear variables;
+
+%% Create Mesher object
+% When Mesher object is created it takes care of initializing interface to GMSH mesh generator
+mesher = mp.Mesher();
+
+%% Create object describing geometric model
+geom = mp.geoms.LShapeIfaceGeom('my_domain');
+geom.params.dW = 3;
+geom.params.dH = 4;
+geom.params.dt = 1.5;
+
+%
+% Relative placement of interface endpoints.
+geom.params.fA = 0.5;
+geom.params.fB = 0.2;
+
+% Specify that desired type of element fo the upper subdomain in quad.
+geom.params.quads=[0,1];
+
+% Get names of geometric regions to be later used in selective meshing
+% of regions.
+regs = geom.regions();
+
+
+%% Prepare regions selectors
+
+regT = [2,4,7,8];
+regB = [1,3,5,6,8];
+
+%% Generate mesh
+mesh1 = mesher.generate(geom, struct('lc', 0.8, 'regionsToMesh', {regs(regT)}));
+mesh2 = mesher.generate(geom, struct('lc', 0.4, 'regionsToMesh', {regs(regB)}));
+
+mp.translateMesh(mesh1, [0,1,0]);
+
+%% Visualize mesh
+% The simplest way to visualize mesh is to use Viewer class.
+viewer = mp.Viewer();
+viewer.show(mesh1);
+viewer.show(mesh2);
+
+%% Edge data in elements 
+% Caclulate edge flags, edge tangent vector and edge normal vector for each element
+
+%% Create edges selector
+% The LShapeGeom geometric model distinguishes boundary endges as well
+% as their subsets. Here we prepare selector that will assign tag 1
+% 1 to ordinary boundary edges and tag 3 to interface edges.
+bcSelector.d_subBottom = 0;
+bcSelector.d_subTop = 0;
+bcSelector.b_bottom  = 1;
+bcSelector.b_left_top = 1;
+bcSelector.b_left_bottom = 1;
+bcSelector.b_other_bottom = 1;
+bcSelector.b_other_top = 1;
+bcSelector.i_interface = 3;
+
+% The use of Tagger is optional. Tagger object give the ability to precisely
+% specify which tags are assigned if mesh elements belongs to multile
+% regions. If one is not interested in such fine control it is enough to
+% use 'default' string in place of tagger argument.
+tagger = mp.Tagger('priority', [0,0; 1, 100; 2,50; 3,25]);
+
+
+%% Get edges data in regions with id=1
+tagsForVertexNormals = [1,3];
+[elemEdgeTags, elemTan, elemNor, nodeTan, nodeNor] = mp_face_edge_data_at_regions(mesh1, tagsForVertexNormals, bcSelector, tagger);
+
+%% Visualization normal and tangent vectors at nodes of the region edges with tag 1 
+
+% Plot arrows for tangent and normal vectors
+hold on;
+quiver(mesh1.nodes(:,1), mesh1.nodes(:,2), nodeTan(:,1), nodeTan(:,2), 0.3, 'LineWidth', 1, 'Color', 'red');
+quiver(mesh1.nodes(:,1), mesh1.nodes(:,2), nodeNor(:,1), nodeNor(:,2), 0.3, 'LineWidth', 1, 'Color', 'blue');
+
+%%
+% Internal management of demo
+mp_manage_demos('report', 'LShapeIfaceGeom_normals', true);
+
+##### SOURCE END #####
+--></body></html>

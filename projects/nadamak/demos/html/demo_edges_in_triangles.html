@@ -1,0 +1,175 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>demo_edges_in_triangles</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_edges_in_triangles.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Illustrate numbering of edges in triangular elements.</a></li><li><a href="#2">Faces to vertices relation</a></li><li><a href="#3">Edges to vertices relation</a></li><li><a href="#4">Faces to edges relation</a></li><li><a href="#5">Tags of edges in faces</a></li></ul></div><h2 id="1">Illustrate numbering of edges in triangular elements.</h2><p>In order to test various mesh utilities without resorting to GMSH, one can use MeshFactory class. The static method MeshFactory.poduce(name) generates Mesh object.</p><pre class="codeinput">viewer = mp.Viewer();
+
+mesh = mp.MeshFactory.produce(<span class="string">'meshA'</span>);
+viewer.show(mesh);
+viewer.labelNodes()
+viewer.labelElements();
+viewer.labelEdges();
+
+f2v = mesh.getAdjacency(2,0);
+e2v = mesh.getAdjacency(1,0);
+f2e = mesh.getAdjacency(2,1);
+</pre><img vspace="5" hspace="5" src="demo_edges_in_triangles_01.png" alt=""> <h2 id="2">Faces to vertices relation</h2><pre class="codeinput"><span class="keyword">for</span> i=1:f2v.length;
+  fprintf(<span class="string">'Element %d nodes : '</span>, i);
+  nodes = f2v.at(i);
+  fprintf(<span class="string">' %d'</span>, nodes);
+  fprintf(<span class="string">'\n'</span>);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Element 1 nodes :  1 2 4
+Element 2 nodes :  2 3 5
+Element 3 nodes :  2 5 4
+</pre><h2 id="3">Edges to vertices relation</h2><pre class="codeinput"><span class="keyword">for</span> i=1:e2v.length;
+  fprintf(<span class="string">'Edge %d nodes : '</span>, i);
+  nodes = e2v.at(i);
+  fprintf(<span class="string">' %d'</span>, nodes);
+  fprintf(<span class="string">'\n'</span>);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Edge 1 nodes :  1 2
+Edge 2 nodes :  1 4
+Edge 3 nodes :  2 3
+Edge 4 nodes :  2 4
+Edge 5 nodes :  2 5
+Edge 6 nodes :  3 5
+Edge 7 nodes :  4 5
+</pre><h2 id="4">Faces to edges relation</h2><pre class="codeinput"><span class="keyword">for</span> i=1:f2e.length;
+  fprintf(<span class="string">'Element %d edges : '</span>, i);
+  edges = f2e.at(i);
+  fprintf(<span class="string">' %d'</span>, edges);
+  fprintf(<span class="string">'\n'</span>);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Element 1 edges :  1 4 2
+Element 2 edges :  3 6 5
+Element 3 edges :  5 7 4
+</pre><h2 id="5">Tags of edges in faces</h2><pre class="codeinput">[edgeTags, ~, ~] = mp_face_edge_data(mesh);
+disp(edgeTags.Data)
+</pre><pre class="codeoutput">   1   0   1   0
+   1   1   0   0
+   0   1   0   0
+
+</pre><p>Report demo status</p><pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'edges_in_triangles'</span>, true);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Illustrate numbering of edges in triangular elements. 
+%
+% In order to test various mesh utilities without resorting to GMSH,
+% one can use MeshFactory class.
+% The static method MeshFactory.poduce(name) generates Mesh object.
+viewer = mp.Viewer();
+
+mesh = mp.MeshFactory.produce('meshA');
+viewer.show(mesh);
+viewer.labelNodes()
+viewer.labelElements();
+viewer.labelEdges();
+
+f2v = mesh.getAdjacency(2,0);
+e2v = mesh.getAdjacency(1,0);
+f2e = mesh.getAdjacency(2,1);
+
+%% Faces to vertices relation
+%
+for i=1:f2v.length;
+  fprintf('Element %d nodes : ', i);
+  nodes = f2v.at(i);
+  fprintf(' %d', nodes);
+  fprintf('\n');
+end
+
+%% Edges to vertices relation
+%
+for i=1:e2v.length;
+  fprintf('Edge %d nodes : ', i);
+  nodes = e2v.at(i);
+  fprintf(' %d', nodes);
+  fprintf('\n');
+end
+
+%% Faces to edges relation
+%
+for i=1:f2e.length;
+  fprintf('Element %d edges : ', i);
+  edges = f2e.at(i);
+  fprintf(' %d', edges);
+  fprintf('\n');
+end
+
+%% Tags of edges in faces
+%
+[edgeTags, ~, ~] = mp_face_edge_data(mesh);
+disp(edgeTags.Data)
+
+%%
+% Report demo status
+mp_manage_demos('report', 'edges_in_triangles', true);
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,161 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Mesh density control demo</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_Mesher_globalField.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Mesh density control demo</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Illustrate controling mesh density via global field</a></li><li><a href="#2">Create Mesher object</a></li><li><a href="#3">Set meshing parameters</a></li><li><a href="#4">Create object describing geometric model</a></li><li><a href="#5">Set factors for vertex lc parameter.</a></li><li><a href="#6">Generate mesh</a></li><li><a href="#7">Visualize mesh</a></li><li><a href="#8">Use constant mesh density field</a></li><li><a href="#9">Use variable mesh density field</a></li></ul></div><h2 id="1">Illustrate controling mesh density via global field</h2><p>RectangleGeom describes simple rectangle geometry. It will be meshed specifying the mesh density in three ways:   * using nodal lc parameters   * using global constant mesh size field   * using variable mesh size field</p><pre class="codeinput">clear <span class="string">variables</span>;
+</pre><h2 id="2">Create Mesher object</h2><p>When Mesher object is created it takes care of initializing interface to GMSH mesh generator</p><pre class="codeinput">mesher = mp.Mesher();
+</pre><h2 id="3">Set meshing parameters</h2><pre class="codeinput">mesher.dim = 2;
+mesher.clean = true;
+</pre><h2 id="4">Create object describing geometric model</h2><pre class="codeinput">geom = mp.geoms.RectangleGeom(<span class="string">'my_domain'</span>);
+geom.params.da = 4;
+geom.params.db = 2;
+</pre><h2 id="5">Set factors for vertex lc parameter.</h2><p>These factors allow mesh refinement around selected vertices</p><pre class="codeinput">geom.params.lcFactors = [1, 0.2, 1, 1];
+</pre><h2 id="6">Generate mesh</h2><pre class="codeinput">meshA = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.8));
+</pre><h2 id="7">Visualize mesh</h2><p>The simplest way to visualize mesh is to use Viewer class.</p><pre class="codeinput">viewer = mp.Viewer();
+
+viewer.show(meshA);
+</pre><img vspace="5" hspace="5" src="demo_Mesher_globalField_01.png" alt=""> <h2 id="8">Use constant mesh density field</h2><p>Generate and visualize mesh again. This time we use global mesh density field</p><pre class="codeinput">mesher.useGlobalField = true;
+meshingParams.lc = 0.2;
+meshingParams.globalField = 0.6;
+
+meshB = mesher.generate(geom, meshingParams);
+
+viewer.stackFigure();
+viewer.show(meshB);
+</pre><img vspace="5" hspace="5" src="demo_Mesher_globalField_02.png" alt=""> <h2 id="9">Use variable mesh density field</h2><pre class="codeinput">meshingParams.globalField = <span class="string">'0.5 - x/4*0.4'</span>;
+
+meshC = mesher.generate(geom, meshingParams);
+
+viewer.stackFigure();
+viewer.show(meshC);
+</pre><img vspace="5" hspace="5" src="demo_Mesher_globalField_03.png" alt=""> <p>Internal management of demos</p><pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'Mesher_globalField'</span>, true);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Mesh density control demo
+
+%% Illustrate controling mesh density via global field
+% 
+% RectangleGeom describes simple rectangle geometry.
+% It will be meshed specifying the mesh density in three ways:
+%   * using nodal lc parameters
+%   * using global constant mesh size field
+%   * using variable mesh size field
+clear variables;
+
+%% Create Mesher object
+% When Mesher object is created it takes care of initializing interface to GMSH mesh generator
+mesher = mp.Mesher();
+
+%% Set meshing parameters
+mesher.dim = 2;
+mesher.clean = true;
+
+%% Create object describing geometric model
+geom = mp.geoms.RectangleGeom('my_domain');
+geom.params.da = 4;
+geom.params.db = 2;
+
+%% Set factors for vertex lc parameter. 
+% These factors allow mesh refinement around selected vertices
+geom.params.lcFactors = [1, 0.2, 1, 1];
+
+%% Generate mesh
+meshA = mesher.generate(geom, struct('lc', 0.8));
+
+%% Visualize mesh
+% The simplest way to visualize mesh is to use Viewer class.
+viewer = mp.Viewer();
+
+viewer.show(meshA);
+
+%% Use constant mesh density field
+% Generate and visualize mesh again.
+% This time we use global mesh density field
+
+mesher.useGlobalField = true;
+meshingParams.lc = 0.2;
+meshingParams.globalField = 0.6;
+
+meshB = mesher.generate(geom, meshingParams);
+
+viewer.stackFigure();
+viewer.show(meshB);
+
+%% Use variable mesh density field
+meshingParams.globalField = '0.5 - x/4*0.4';
+
+meshC = mesher.generate(geom, meshingParams);
+
+viewer.stackFigure();
+viewer.show(meshC);
+
+%% 
+% Internal management of demos
+mp_manage_demos('report', 'Mesher_globalField', true);
+
+##### SOURCE END #####
+--></body></html>

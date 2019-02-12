@@ -1,0 +1,208 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Non-conforming meshing of L-Shape geometric domain with an interface</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_LShapeIfaceGeom_nonconforming.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Non-conforming meshing of L-Shape geometric domain with an interface</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Summary of the demo</a></li><li><a href="#2">Geometric model with interface</a></li><li><a href="#3">Create Mesher object</a></li><li><a href="#4">Create object describing geometric model</a></li><li><a href="#6">Prepare regions selectors</a></li><li><a href="#7">Generate mesh</a></li><li><a href="#8">Visualize mesh</a></li><li><a href="#9">Internal management of demo</a></li></ul></div><h2 id="1">Summary of the demo</h2><p>This demo illustrates how to generate meshes separately for regions of interest. In case of L-Shape geometry, it is split into two subdomains by an straight line interface. Each subdomain can be meshed separately (together it its boundary regions). The interface line can be also meshed separately. In this demo the meshes are translated to for more clear view.</p><h2 id="2">Geometric model with interface</h2><p>LShapeIfaceGeom class provides geometric model with internal boundary (called interface). The user can set the plcement of the interface with some restricted way by varying parameters fA and fB in the range (0, 1).</p><pre class="codeinput">clear <span class="string">variables</span>;
+</pre><h2 id="3">Create Mesher object</h2><p>When Mesher object is created it takes care of initializing interface to GMSH mesh generator</p><pre class="codeinput">mesher = mp.Mesher();
+</pre><h2 id="4">Create object describing geometric model</h2><pre class="codeinput">geom = mp.geoms.LShapeIfaceGeom(<span class="string">'my_domain'</span>);
+geom.params.dW = 3;
+geom.params.dH = 4;
+geom.params.dt = 1.5;
+
+<span class="comment">%</span>
+<span class="comment">% Relative placement of interface endpoints.</span>
+geom.params.fA = 0.5;
+geom.params.fB = 0.2;
+
+<span class="comment">%</span>
+<span class="comment">% Get the cooordinates of interface endpoints.</span>
+[p1, p2] = geom.getInterfaceEndpoints();
+disp(p1)
+disp(p2)
+
+<span class="comment">% Specify that desired type of element fo the upper subdomain in quad.</span>
+geom.params.quads=[0,1];
+
+<span class="comment">% Display names of geometric regions</span>
+regs = geom.regions();
+arrayfun(@(i) fprintf(<span class="string">'%d %s\n'</span>,i,regs{i}), 1:length(regs));
+</pre><pre class="codeoutput">     0     2     0
+
+    1.5000    2.1200         0
+
+1 d_subBottom
+2 d_subTop
+3 b_bottom
+4 b_left_top
+5 b_left_bottom
+6 b_other_bottom
+7 b_other_top
+8 i_interface
+</pre><p><img vspace="5" hspace="5" src="images/LShape.png" alt=""> </p><h2 id="6">Prepare regions selectors</h2><pre class="codeinput">regT = [2,4,7,8];
+regB = [1,3,6,8];
+regI = [8];
+</pre><h2 id="7">Generate mesh</h2><pre class="codeinput">mesh1 = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.8, <span class="string">'regionsToMesh'</span>, {regs(regT)}));
+disp(mesh1.regionNames());
+mesh2 = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.4, <span class="string">'regionsToMesh'</span>, {regs(regB)}));
+disp(mesh2.regionNames());
+mesh3 = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.2, <span class="string">'dim'</span>, 1', <span class="string">'regionsToMesh'</span>, {regs(regI)}));
+disp(mesh3.regionNames());
+
+mp.translateMesh(mesh1, [0,1,0]);
+mp.translateMesh(mesh3, [0,0.5,0]);
+</pre><pre class="codeoutput">    'b_left_top'    'b_other_top'    'i_interface'    'd_subTop'
+
+    'b_bottom'    'b_other_bottom'    'i_interface'    'd_subBottom'
+
+    'i_interface'
+
+</pre><h2 id="8">Visualize mesh</h2><p>The simplest way to visualize mesh is to use Viewer class.</p><pre class="codeinput">viewer = mp.Viewer();
+viewer.show(mesh1);
+viewer.show(mesh2);
+viewer.show(mesh3);
+</pre><img vspace="5" hspace="5" src="demo_LShapeIfaceGeom_nonconforming_01.png" alt=""> <h2 id="9">Internal management of demo</h2><pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'LShapeIfaceGeom_nonconforming'</span>, true);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Non-conforming meshing of L-Shape geometric domain with an interface
+
+%% Summary of the demo
+% This demo illustrates how to generate meshes separately for regions of
+% interest. In case of L-Shape geometry, it is split into two subdomains by
+% an straight line interface. Each subdomain can be meshed separately
+% (together it its boundary regions). The interface line can be also meshed
+% separately. In this demo the meshes are translated to for more clear
+% view.
+
+%% Geometric model with interface
+% 
+% LShapeIfaceGeom class provides geometric model with internal boundary (called interface).
+% The user can set the plcement of the interface with some restricted way
+% by varying parameters fA and fB in the range (0, 1).
+%
+clear variables;
+
+%% Create Mesher object
+% When Mesher object is created it takes care of initializing interface to GMSH mesh generator
+mesher = mp.Mesher();
+
+%% Create object describing geometric model
+geom = mp.geoms.LShapeIfaceGeom('my_domain');
+geom.params.dW = 3;
+geom.params.dH = 4;
+geom.params.dt = 1.5;
+
+%
+% Relative placement of interface endpoints.
+geom.params.fA = 0.5;
+geom.params.fB = 0.2;
+
+%
+% Get the cooordinates of interface endpoints.
+[p1, p2] = geom.getInterfaceEndpoints();
+disp(p1)
+disp(p2)
+
+% Specify that desired type of element fo the upper subdomain in quad.
+geom.params.quads=[0,1];
+
+% Display names of geometric regions
+regs = geom.regions();
+arrayfun(@(i) fprintf('%d %s\n',i,regs{i}), 1:length(regs));
+
+%%
+% <<images/LShape.png>>
+
+%% Prepare regions selectors
+
+regT = [2,4,7,8];
+regB = [1,3,6,8];
+regI = [8];
+
+%% Generate mesh
+mesh1 = mesher.generate(geom, struct('lc', 0.8, 'regionsToMesh', {regs(regT)}));
+disp(mesh1.regionNames());
+mesh2 = mesher.generate(geom, struct('lc', 0.4, 'regionsToMesh', {regs(regB)}));
+disp(mesh2.regionNames());
+mesh3 = mesher.generate(geom, struct('lc', 0.2, 'dim', 1', 'regionsToMesh', {regs(regI)}));
+disp(mesh3.regionNames());
+
+mp.translateMesh(mesh1, [0,1,0]);
+mp.translateMesh(mesh3, [0,0.5,0]);
+
+%% Visualize mesh
+% The simplest way to visualize mesh is to use Viewer class.
+viewer = mp.Viewer();
+viewer.show(mesh1);
+viewer.show(mesh2);
+viewer.show(mesh3);
+
+
+%% Internal management of demo
+mp_manage_demos('report', 'LShapeIfaceGeom_nonconforming', true);
+
+##### SOURCE END #####
+--></body></html>

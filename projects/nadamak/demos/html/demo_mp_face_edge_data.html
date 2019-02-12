@@ -1,0 +1,183 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Illustrate how to use function mp_face_edge_data</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_mp_face_edge_data.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Illustrate how to use function mp_face_edge_data</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Show mesh</a></li><li><a href="#3">Edge data in elements</a></li><li><a href="#4">Visualization of edge data</a></li></ul></div><p>Get one of the predefined meshes.</p><pre class="codeinput">mesh = mp.MeshFactory.produce(<span class="string">'tritri'</span>);
+</pre><h2 id="2">Show mesh</h2><pre class="codeinput">viewer = mp.Viewer();
+viewer.show(mesh);
+</pre><img vspace="5" hspace="5" src="demo_mp_face_edge_data_01.png" alt=""> <h2 id="3">Edge data in elements</h2><p>Caclulate edge flags, edge tangent vector and edge normal vector for each element</p><pre class="codeinput">[elemEdgeTags, elemTan, elemNor] = mp_face_edge_data(mesh);
+</pre><h2 id="4">Visualization of edge data</h2><p>Get face and edge centers</p><pre class="codeinput">faceCenters = mesh.faceCenters();
+edgeCenters = mesh.edgeCenters();
+</pre><p>Get face to edge adjacencies</p><pre class="codeinput">f2e = mesh.getAdjacency(mp.Topo.Face, mp.Topo.Edge);
+</pre><p>Count number of labels to print</p><pre class="codeinput">nlabels = 0;
+<span class="keyword">for</span> i=1:f2e.length
+  nlabels = nlabels + length(f2e.at(i));
+<span class="keyword">end</span>
+</pre><p>Preallocate arrays of label coordinates and labels</p><pre class="codeinput">labelCoords = zeros(nlabels, 3);
+labels = zeros(nlabels, 1);
+</pre><p>Preallocate arrays for tangent vectors, normal vecotrs, and anchor points</p><pre class="codeinput">tan = zeros(nlabels, 2);
+nor = zeros(nlabels, 2);
+quiverPoint = zeros(nlabels, 3);
+
+<span class="comment">% Fill the the arrays</span>
+k = 0;
+<span class="keyword">for</span> i = 1:f2e.length
+  edges = f2e.at(i);
+  fc = faceCenters(i, :);
+  <span class="keyword">for</span> j = 1:length(edges)
+    k = k+1;
+    labels(k) = elemEdgeTags(i, j);
+    ec = edgeCenters(edges(j), :);
+    labelCoords(k, :) = ec + (fc-ec)*0.3;
+    quiverPoint(k, :) = ec+(fc-ec)*0.1;
+    tan(k, :) = elemTan(i, j, :);
+    nor(k, :) = -elemNor(i, j, :);
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p>Plot arrows for tangent and normal vectors</p><pre class="codeinput">hold <span class="string">on</span>;
+quiver(quiverPoint(:,1), quiverPoint(:,2), tan(:,1), tan(:,2), 0.3, <span class="string">'LineWidth'</span>, 1, <span class="string">'Color'</span>, <span class="string">'red'</span>);
+quiver(quiverPoint(:,1), quiverPoint(:,2), nor(:,1), nor(:,2), 0.3, <span class="string">'LineWidth'</span>, 1, <span class="string">'Color'</span>, <span class="string">'blue'</span>);
+</pre><img vspace="5" hspace="5" src="demo_mp_face_edge_data_02.png" alt=""> <p>Plot labels indicating if elemen edge is boundary edge</p><pre class="codeinput">mp_plot_labels(labelCoords, struct(<span class="string">'labels'</span>, labels, <span class="string">'Color'</span>, <span class="string">'yellow'</span>, <span class="string">'FontSize'</span>, 12));
+</pre><img vspace="5" hspace="5" src="demo_mp_face_edge_data_03.png" alt=""> <pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'mp_face_edge_data'</span>, true);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Illustrate how to use function mp_face_edge_data
+%
+
+%%
+% Get one of the predefined meshes.
+mesh = mp.MeshFactory.produce('tritri');
+
+%% Show mesh
+viewer = mp.Viewer();
+viewer.show(mesh);
+
+%% Edge data in elements 
+% Caclulate edge flags, edge tangent vector and edge normal vector for each element
+[elemEdgeTags, elemTan, elemNor] = mp_face_edge_data(mesh);
+
+%% Visualization of edge data
+
+%% 
+% Get face and edge centers
+faceCenters = mesh.faceCenters();
+edgeCenters = mesh.edgeCenters();
+
+%%
+% Get face to edge adjacencies
+f2e = mesh.getAdjacency(mp.Topo.Face, mp.Topo.Edge);
+
+%%
+% Count number of labels to print
+nlabels = 0;
+for i=1:f2e.length
+  nlabels = nlabels + length(f2e.at(i));
+end
+
+%%
+% Preallocate arrays of label coordinates and labels
+labelCoords = zeros(nlabels, 3);
+labels = zeros(nlabels, 1);
+
+%% 
+% Preallocate arrays for tangent vectors, normal vecotrs, and anchor points
+tan = zeros(nlabels, 2);
+nor = zeros(nlabels, 2);
+quiverPoint = zeros(nlabels, 3);
+
+% Fill the the arrays
+k = 0;
+for i = 1:f2e.length
+  edges = f2e.at(i);
+  fc = faceCenters(i, :);
+  for j = 1:length(edges)
+    k = k+1;
+    labels(k) = elemEdgeTags(i, j);
+    ec = edgeCenters(edges(j), :);
+    labelCoords(k, :) = ec + (fc-ec)*0.3;
+    quiverPoint(k, :) = ec+(fc-ec)*0.1;
+    tan(k, :) = elemTan(i, j, :);
+    nor(k, :) = -elemNor(i, j, :);
+  end
+end
+
+%%
+% Plot arrows for tangent and normal vectors
+hold on;
+quiver(quiverPoint(:,1), quiverPoint(:,2), tan(:,1), tan(:,2), 0.3, 'LineWidth', 1, 'Color', 'red');
+quiver(quiverPoint(:,1), quiverPoint(:,2), nor(:,1), nor(:,2), 0.3, 'LineWidth', 1, 'Color', 'blue');
+%%
+% Plot labels indicating if elemen edge is boundary edge
+mp_plot_labels(labelCoords, struct('labels', labels, 'Color', 'yellow', 'FontSize', 12));
+
+
+%%
+%
+mp_manage_demos('report', 'mp_face_edge_data', true);
+
+##### SOURCE END #####
+--></body></html>

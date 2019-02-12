@@ -1,0 +1,124 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Illustrate mesh generation for domain with circular hole.</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_circ_hole_mesh.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Illustrate mesh generation for domain with circular hole.</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Setup GMSH</a></li><li><a href="#3">Set meshing parameters</a></li><li><a href="#4">Generate geometric model in GMSH geo format.</a></li><li><a href="#5">Generate mesh</a></li><li><a href="#6">Visualize mesh</a></li></ul></div><pre class="codeinput">clear <span class="string">variables</span>;
+</pre><h2 id="2">Setup GMSH</h2><p>This call is mandatory in order for Matlab/Octave to be able to run GMSH executable.</p><pre class="codeinput">mp_setup_gmsh()
+</pre><h2 id="3">Set meshing parameters</h2><pre class="codeinput">meshingParams.basename =<span class="string">'rect'</span>;
+meshingParams.folder = <span class="string">'.'</span>;
+meshingParams.dim = 2;
+meshingParams.clean = false;
+</pre><h2 id="4">Generate geometric model in GMSH geo format.</h2><pre class="codeinput">params.lc = 0.4;
+params.dW = 3;
+params.dr = 1;
+params.lcFactors = [1,0.3,1,1,1,1,1,1];
+gmshgeom = mp_geom_circ_hole(params);
+</pre><h2 id="5">Generate mesh</h2><pre class="codeinput">[nodes, elements] = mp_gmsh_generate(gmshgeom, meshingParams);
+</pre><h2 id="6">Visualize mesh</h2><pre class="codeinput">figure(1);
+clf;
+mp_plot_mesh(nodes, elements);
+axis(<span class="string">'equal'</span>)
+saveas(gcf(), <span class="string">'circ_hole.png'</span>);
+<span class="comment">% Register demo status</span>
+mp_manage_demos(<span class="string">'report'</span>, <span class="string">'circ_hole_mesh'</span>, true);
+</pre><img vspace="5" hspace="5" src="demo_circ_hole_mesh_01.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Illustrate mesh generation for domain with circular hole. 
+%
+%%
+clear variables;
+%% Setup GMSH
+% This call is mandatory in order for Matlab/Octave to be able to run
+% GMSH executable.
+mp_setup_gmsh()
+%% Set meshing parameters
+%
+meshingParams.basename ='rect';
+meshingParams.folder = '.';
+meshingParams.dim = 2;
+meshingParams.clean = false;
+%% Generate geometric model in GMSH geo format.
+%
+params.lc = 0.4;
+params.dW = 3;
+params.dr = 1;
+params.lcFactors = [1,0.3,1,1,1,1,1,1];
+gmshgeom = mp_geom_circ_hole(params);
+%% Generate mesh
+%
+[nodes, elements] = mp_gmsh_generate(gmshgeom, meshingParams);
+%% Visualize mesh
+%
+figure(1);
+clf;
+mp_plot_mesh(nodes, elements);
+axis('equal')
+saveas(gcf(), 'circ_hole.png');
+% Register demo status
+mp_manage_demos('report', 'circ_hole_mesh', true);
+##### SOURCE END #####
+--></body></html>

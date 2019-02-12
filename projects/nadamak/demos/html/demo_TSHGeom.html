@@ -1,0 +1,228 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Geometry and meshing demo</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_TSHGeom.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Geometry and meshing demo</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Illustrate TSHGeom geometry model</a></li><li><a href="#2">Create Mesher object</a></li><li><a href="#3">Set meshing parameters</a></li><li><a href="#4">Create object describing geometric model</a></li><li><a href="#6">Generate Mesh object</a></li><li><a href="#7">Visualize mesh</a></li><li><a href="#8">Geometry with insets</a></li><li><a href="#15">Model with straight segments interface</a></li></ul></div><h2 id="1">Illustrate TSHGeom geometry model</h2><p>TSH (Twin Square Holes) is a geometry that consists of two topological squares glued at a common edge. The common edge can be curved or build from two straight segments. It is possible to create circular insets in each subdomian.</p><p>The TSHGeom class provides convenient object oriented interface for managing TSH geometry model.</p><pre class="codeinput">clear <span class="string">variables</span>;
+</pre><h2 id="2">Create Mesher object</h2><p>When Mesher object is created it takes care of initializing interface to GMSH mesh generator</p><pre class="codeinput">mesher = mp.Mesher();
+</pre><h2 id="3">Set meshing parameters</h2><pre class="codeinput">mesher.basename =<span class="string">'demotsh'</span>;
+mesher.folder = <span class="string">'.'</span>;
+mesher.dim = 2;
+mesher.clean = false;
+mesher.quadsonly = false;
+</pre><h2 id="4">Create object describing geometric model</h2><pre class="codeinput">geom = mp.geoms.TSHGeom(<span class="string">'my_domain'</span>);
+geom.dtop = 0.8*geom.dW;
+geom.curved = true;
+geom.dmy=0.4;
+</pre><p>The model is parameterized by the following dimensions:</p><p><img vspace="5" hspace="5" src="images/TSH.png" alt=""> </p><h2 id="6">Generate Mesh object</h2><pre class="codeinput">mesh = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.1));
+</pre><h2 id="7">Visualize mesh</h2><p>The simplest way to visualize mesh is to use Viewer class.</p><pre class="codeinput">viewer = mp.Viewer();
+
+viewer.show(mesh);
+viewer.saveas(<span class="string">'demo_tsh_mesh_noholes.png'</span>);
+</pre><img vspace="5" hspace="5" src="demo_TSHGeom_01.png" alt=""> <h2 id="8">Geometry with insets</h2><p>Specify insets type</p><div><ul><li>1 - hole</li><li>0 - no inset</li></ul></div><pre class="codeinput">geom.insetsType = [1,0];
+</pre><p>Specify inset size and location. They are specified through other model's parameters. Please note that the hole in the second domain will not appear as it is explicitly disabled by the inset type given above.</p><pre class="codeinput">geom.insetsXYR(1,:) = [geom.dW/4, geom.dH*2/3, geom.dH/6];
+geom.insetsXYR(2,:) = [geom.dW*0.75, geom.dH/2, geom.dH/5];
+</pre><p>Specify meshing parameters for each subdomain.</p><pre class="codeinput">geom.structured = [false, true];
+geom.nyelems = 15;
+geom.nxelems = [15, 10];
+geom.quads(2) = true;
+geom.quads(1) = false;
+</pre><p>Specify how many arc are used to construct inset circles.</p><pre class="codeinput">geom.insetsN = [4, 3];
+</pre><p>Show all properties of geom.</p><pre class="codeinput">disp(geom);
+</pre><pre class="codeoutput">  TSHGeom with properties:
+
+             dW: 2
+             dH: 1
+        dbottom: 1
+           dtop: 1.6000
+            dmx: 1
+            dmy: 0.4000
+         curved: 1
+      insetsXYR: [2&times;3 double]
+        insetsN: [4 3]
+     insetsType: [1 0]
+          quads: [0 1]
+        nxelems: [15 10]
+        nyelems: 15
+     structured: [0 1]
+            dim: 2
+       legacyID: 8
+           name: 'my_domain'
+    templateDir: '/devel/jenkins/workspace/Nadamak_demos/src/demos/../packages/+mp/../../core/geom/geomodels'
+
+</pre><p>Generate and visualize mesh again.</p><pre class="codeinput">mesh = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.1));
+viewer.clear();
+viewer.show(mesh);
+viewer.saveas(<span class="string">'demo_tsh_mesh_noholes.png'</span>);
+</pre><img vspace="5" hspace="5" src="demo_TSHGeom_02.png" alt=""> <h2 id="15">Model with straight segments interface</h2><p>Now we set the interface to be a straight segments polyline. We also request the two subdomains to be both meshed with quad elements and enable the hole in the second domain.</p><pre class="codeinput">geom.curved = false;
+geom.quads = [true, true];
+geom.insetsType(2) = 1;
+
+mesh = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.1));
+viewer.clear();
+viewer.show(mesh);
+viewer.saveas(<span class="string">'demo_tsh_mesh_straight.png'</span>);
+</pre><img vspace="5" hspace="5" src="demo_TSHGeom_03.png" alt=""> <p>Report demo status. This line is just for management of the demo suite and should be skept when reproducing the above example.</p><pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'TSHGeom'</span>, true);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Geometry and meshing demo
+
+%% Illustrate TSHGeom geometry model
+% TSH (Twin Square Holes) is a geometry that consists of two topological
+% squares glued at a common edge. The common edge can be curved or
+% build from two straight segments. It is possible to create circular
+% insets in each subdomian.
+% 
+% The TSHGeom class provides convenient object oriented interface for
+% managing TSH geometry model.
+
+clear variables;
+
+%% Create Mesher object
+% When Mesher object is created it takes care of initializing interface to GMSH mesh generator
+mesher = mp.Mesher();
+
+%% Set meshing parameters
+mesher.basename ='demotsh';
+mesher.folder = '.';
+mesher.dim = 2;
+mesher.clean = false;
+mesher.quadsonly = false;
+
+%% Create object describing geometric model
+geom = mp.geoms.TSHGeom('my_domain');
+geom.dtop = 0.8*geom.dW;
+geom.curved = true;
+geom.dmy=0.4;
+%% 
+% The model is parameterized by the following dimensions:
+%
+% <<images/TSH.png>>
+%% Generate Mesh object
+mesh = mesher.generate(geom, struct('lc', 0.1));
+
+%% Visualize mesh
+% The simplest way to visualize mesh is to use Viewer class.
+viewer = mp.Viewer();
+
+viewer.show(mesh);
+viewer.saveas('demo_tsh_mesh_noholes.png');
+
+%% Geometry with insets
+% Specify insets type
+%
+% * 1 - hole
+% * 0 - no inset
+geom.insetsType = [1,0];
+
+%%
+% Specify inset size and location. They are specified through other model's 
+% parameters. Please note that the hole in the second domain will not appear
+% as it is explicitly disabled by the inset type given above.
+geom.insetsXYR(1,:) = [geom.dW/4, geom.dH*2/3, geom.dH/6];
+geom.insetsXYR(2,:) = [geom.dW*0.75, geom.dH/2, geom.dH/5];
+%%
+% Specify meshing parameters for each subdomain.
+geom.structured = [false, true];
+geom.nyelems = 15;
+geom.nxelems = [15, 10];
+geom.quads(2) = true;
+geom.quads(1) = false;
+%%
+% Specify how many arc are used to construct inset circles.
+geom.insetsN = [4, 3];
+
+%% 
+% Show all properties of geom. 
+disp(geom);
+
+%%
+% Generate and visualize mesh again.
+mesh = mesher.generate(geom, struct('lc', 0.1));
+viewer.clear();
+viewer.show(mesh);
+viewer.saveas('demo_tsh_mesh_noholes.png');
+%%
+
+%% Model with straight segments interface
+% Now we set the interface to be a straight segments polyline. 
+% We also request the two subdomains to be both meshed with quad elements 
+% and enable the hole in the second domain.
+geom.curved = false;
+geom.quads = [true, true];
+geom.insetsType(2) = 1;
+
+mesh = mesher.generate(geom, struct('lc', 0.1));
+viewer.clear();
+viewer.show(mesh);
+viewer.saveas('demo_tsh_mesh_straight.png');
+
+%% 
+% Report demo status. This line is just for management of the demo suite
+% and should be skept when reproducing the above example.
+mp_manage_demos('report', 'TSHGeom', true);
+##### SOURCE END #####
+--></body></html>

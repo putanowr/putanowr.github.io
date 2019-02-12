@@ -1,0 +1,146 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Draw mesh and some mesh entities stars</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="demo_mp_view_stars.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Draw mesh and some mesh entities stars</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Access test data file.</a></li><li><a href="#2">Show mesh</a></li><li><a href="#3">Star for vertex seeds</a></li><li><a href="#4">Star for edge seeds</a></li><li><a href="#5">Star for cell seeds</a></li><li><a href="#6">Second order stars</a></li></ul></div><h2 id="1">Access test data file.</h2><p>For explanation see deomo mp_readMesh.</p><pre class="codeinput">mp_test_initialize();
+fhandle = mp_test_data_fopen(<span class="string">'rectangle_quads.msh'</span>);
+mesh = mp.readMesh(fhandle);
+</pre><h2 id="2">Show mesh</h2><pre class="codeinput">viewer = mp.Viewer();
+viewer.show(mesh);
+</pre><img vspace="5" hspace="5" src="demo_mp_view_stars_01.png" alt=""> <h2 id="3">Star for vertex seeds</h2><p>The seeds are some vertices while star elements are edges and faces adjacent to the seeds.</p><p>The meaning of IDs and the selection of adjacency relations to build a star is done by specifying topological dimension of mesh entities. The dimensions are:</p><div><ul><li>0 for vertices</li><li>1 for edges</li><li>2 for faces</li><li>3 for cells (currently not implemented)</li></ul></div><p>One can either use numeric values or a <tt>mp.Topo</tt> enumerator. There are two ways of using Topo enumerator:</p><div><ul><li>use <tt>Topo</tt> constructor:  <tt>mp.Topo(dim)</tt> where dim is 0,1,2 or 3</li><li>use enum names: <tt>mp.Topo.V</tt> or <tt>mp.Topo.Vertex</tt> , etc.</li></ul></div><p>In the example below the seed are vertices [46, 74, 35, 18] and the star is build from faces and edges adjacent to these vertices.</p><pre class="codeinput">viewer.showStar(mesh, mp.Topo.Vertex, [46, 74, 35, 18], [mp.Topo.Face, mp.Topo.Edge]);
+</pre><img vspace="5" hspace="5" src="demo_mp_view_stars_02.png" alt=""> <h2 id="4">Star for edge seeds</h2><p>The seeds are edges and the star elements are adjacent edges.</p><pre class="codeinput">viewer.stackFigure();
+viewer.show(mesh);
+viewer.showStar(mesh, mp.Topo.Edge, [21,56, 88, 102], mp.Topo.Edge);
+</pre><img vspace="5" hspace="5" src="demo_mp_view_stars_03.png" alt=""> <h2 id="5">Star for cell seeds</h2><p>The seeds are faces and star elements are the adjacent faces.</p><pre class="codeinput">viewer.stackFigure();
+viewer.show(mesh);
+viewer.showStar(mesh, mp.Topo.Face, [21,56], mp.Topo.Face);
+</pre><img vspace="5" hspace="5" src="demo_mp_view_stars_04.png" alt=""> <h2 id="6">Second order stars</h2><p>Second order stars are stars of stars. For the example below the seed is an element, first order star elements are its vertices and the second order star elements are the faces adjacent to these vertices.</p><pre class="codeinput">viewer.stackFigure();
+viewer.show(mesh);
+viewer.showStar2(mesh, mp.Topo.Face, 10, mp.Topo.Vertex, mp.Topo.Face);
+
+mp_manage_demos(<span class="string">'report'</span>, <span class="string">'mp_view_stars'</span>, true);
+</pre><img vspace="5" hspace="5" src="demo_mp_view_stars_05.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Draw mesh and some mesh entities stars
+%
+%% Access test data file.
+% For explanation see deomo mp_readMesh.
+mp_test_initialize();
+fhandle = mp_test_data_fopen('rectangle_quads.msh');
+mesh = mp.readMesh(fhandle);
+
+%% Show mesh
+viewer = mp.Viewer();
+viewer.show(mesh);
+
+%% Star for vertex seeds 
+% The seeds are some vertices while star elements are edges and faces
+% adjacent to the seeds.
+% 
+% The meaning of IDs and the selection of adjacency relations to build
+% a star is done by specifying topological dimension of mesh entities.
+% The dimensions are:
+%
+% *  0 for vertices
+% *  1 for edges
+% *  2 for faces
+% *  3 for cells (currently not implemented)
+%
+% One can either use numeric values or a |mp.Topo| enumerator.
+% There are two ways of using Topo enumerator:
+%  
+% * use |Topo| constructor:  |mp.Topo(dim)| where dim is 0,1,2 or 3 
+% * use enum names: |mp.Topo.V| or |mp.Topo.Vertex| , etc.
+%
+% In the example below the seed are vertices [46, 74, 35, 18] and the star
+% is build from faces and edges adjacent to these vertices.
+viewer.showStar(mesh, mp.Topo.Vertex, [46, 74, 35, 18], [mp.Topo.Face, mp.Topo.Edge]);
+
+%% Star for edge seeds
+% The seeds are edges and the star elements are adjacent edges.
+viewer.stackFigure();
+viewer.show(mesh);
+viewer.showStar(mesh, mp.Topo.Edge, [21,56, 88, 102], mp.Topo.Edge);
+
+%% Star for cell seeds
+% The seeds are faces and star elements are the adjacent faces.
+viewer.stackFigure();
+viewer.show(mesh);
+viewer.showStar(mesh, mp.Topo.Face, [21,56], mp.Topo.Face);
+
+%% Second order stars
+% Second order stars are stars of stars. For the example below the seed
+% is an element, first order star elements are its vertices and the second
+% order star elements are the faces adjacent to these vertices.
+viewer.stackFigure();
+viewer.show(mesh);
+viewer.showStar2(mesh, mp.Topo.Face, 10, mp.Topo.Vertex, mp.Topo.Face);
+
+mp_manage_demos('report', 'mp_view_stars', true);
+
+##### SOURCE END #####
+--></body></html>
