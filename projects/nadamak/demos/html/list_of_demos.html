@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Demos</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-12"><meta name="DC.source" content="list_of_demos.m"><style type="text/css">
+      --><title>Demos</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-18"><meta name="DC.source" content="list_of_demos.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,49 +66,53 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Demos</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Demo execution status</a></li><li><a href="#2">Interface function demos</a></li><li><a href="#3">Geometric models demos</a></li><li><a href="#4">Mesher demos</a></li><li><a href="#5">Object oriented interface demos</a></li><li><a href="#6">Other demos</a></li></ul></div><h2 id="1">Demo execution status</h2><pre class="codeoutput">Demos executed at: 12-Feb-2019 20:39:17
+  </style></head><body><div class="content"><h1>Demos</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Demo execution status</a></li><li><a href="#2">Interface function demos</a></li><li><a href="#3">Geometric models demos</a></li><li><a href="#4">Mesher demos</a></li><li><a href="#5">Object oriented interface demos</a></li><li><a href="#6">Geometric utilities demos</a></li><li><a href="#7">Other demos</a></li></ul></div><h2 id="1">Demo execution status</h2><pre class="codeoutput">Demos executed at: 18-Feb-2019 10:18:16
 
-demo                       triangles_vs_quads | 1 |     9.44
-demo                           rectangle_mesh | 1 |     1.43
-demo                           circ_hole_mesh | 1 |     1.22
-demo                       edges_in_triangles | 1 |     1.67
-demo                       highlight_elements | 1 |     1.51
-demo                          highlight_nodes | 1 |     1.97
-demo                                   labels | 1 |     0.72
-demo                               LShapeGeom | 1 |     2.98
-demo                    LShapeGeom_refinement | 1 |    56.20
-demo                          LShapeIfaceGeom | 1 |     1.45
-demo                  LShapeIfaceGeom_queries | 1 |     3.80
-demo            LShapeIfaceGeom_nonconforming | 1 |     1.52
-demo                  LShapeIfaceGeom_normals | 1 |     1.95
+demo                       triangles_vs_quads | 1 |    10.16
+demo                     triangle_barycentric | 1 |     2.34
+demo                     triangle_rand_points | 1 |     1.49
+demo                           rectangle_mesh | 1 |     1.02
+demo                           circ_hole_mesh | 1 |     1.25
+demo                       edges_in_triangles | 1 |     1.21
+demo                       highlight_elements | 1 |     1.34
+demo                          highlight_nodes | 1 |     2.04
+demo                                   labels | 1 |     0.76
+demo                               LShapeGeom | 1 |     3.01
+demo                    LShapeGeom_refinement | 1 |    56.21
+demo                          LShapeIfaceGeom | 1 |     1.50
+demo                  LShapeIfaceGeom_queries | 1 |     3.90
+demo            LShapeIfaceGeom_nonconforming | 1 |     1.45
+demo                  LShapeIfaceGeom_normals | 1 |     2.02
 demo                              lshape_mesh | 1 |     0.88
-demo                         Mesh_edgeCenters | 1 |     0.98
-demo                         Mesh_faceCenters | 1 |     0.66
-demo                Mesh_parent_child_submesh | 1 |     2.30
-demo                             Mesh_submesh | 1 |     1.47
-demo                            Mesher_square | 1 |     1.14
-demo                       Mesher_globalField | 1 |     3.02
-demo                        Mesher_refinement | 1 |     1.13
+demo                         Mesh_edgeCenters | 1 |     0.95
+demo                         Mesh_faceCenters | 1 |     0.69
+demo                Mesh_parent_child_submesh | 1 |     2.50
+demo                             Mesh_submesh | 1 |     1.33
+demo                            Mesher_square | 1 |     1.09
+demo                       Mesher_globalField | 1 |     3.08
+demo                        Mesher_refinement | 1 |     1.35
 demo                              MeshFactory | 1 |     2.09
-demo                             mesh_factory | 1 |     4.39
-demo                          mp_enumerations | 1 |     0.46
-demo                         mp_elems_centers | 1 |     0.90
-demo                        mp_face_edge_data | 1 |     1.50
-demo             mp_face_edge_data_at_regions | 1 |     1.76
-demo                             mp_GeomTrans | 1 |     0.83
-demo                            mp_map_circle | 1 |     0.43
-demo                              mp_readMesh | 1 |     0.42
-demo                         mp_tagging_nodes | 1 |     1.63
+demo                             mesh_factory | 1 |     4.54
+demo                          mp_enumerations | 1 |     0.57
+demo                         mp_elems_centers | 1 |     0.92
+demo                        mp_face_edge_data | 1 |     1.37
+demo             mp_face_edge_data_at_regions | 1 |     1.73
+demo                             mp_GeomTrans | 1 |     0.85
+demo                            mp_map_circle | 1 |     0.44
+demo                              mp_readMesh | 1 |     0.43
+demo                         mp_tagging_nodes | 1 |     1.55
 demo                      mp_get_tagged_nodes | 1 |     1.48
-demo                      mp_get_tagged_edges | 1 |     3.14
-demo                      mp_tag_region_nodes | 1 |     1.61
-demo                            mp_view_stars | 1 |     3.84
-demo                            NotchedRQGeom | 1 |     1.81
-demo                           SquareHoleGeom | 1 |     1.72
-demo                                  TSHGeom | 1 |     8.79
-demo                        twin_squares_mesh | 1 |     1.41
-demo                                   Viewer | 1 |     0.80
-demo                                  voids2D | 1 |     0.93
+demo                      mp_get_tagged_edges | 1 |     3.20
+demo                      mp_tag_region_nodes | 1 |     1.67
+demo                            mp_view_stars | 1 |     3.85
+demo                            NotchedRQGeom | 1 |     1.80
+demo                           SquareHoleGeom | 1 |     1.70
+demo                             TriangleGeom | 1 |     1.16
+demo                        TriangleHighOrder | 1 |     0.77
+demo                                  TSHGeom | 1 |     8.69
+demo                        twin_squares_mesh | 1 |     1.39
+demo                                   Viewer | 1 |     0.86
+demo                                  voids2D | 1 |     0.98
 </pre><h2 id="2">Interface function demos</h2><p>
 <ul>
 <li><a href="demo_mp_get_tagged_nodes.html">demo_mp_get_tagged_nodes</a> Get tagged nodes in regions</li>
@@ -127,6 +131,7 @@ demo                                  voids2D | 1 |     0.93
 <li><a href="demo_LShapeIfaceGeom_normals.html">demo_LShapeIfaceGeom_normals</a>Normals at edges in separate regions</li>
 <li><a href="demo_NotchedRQGeom.html">demo_NotchedRQGeom</a> Geometric doman of quarter of notched rectangle</li>
 <li><a href="demo_SquareHoleGeom.html">demo_SquareHoleGeom</a> Square with circular hole</li>
+<li><a href="demo_TriangleGeom.html">demo_TriangleGeom</a> Triangular domain</li>
 <li><a href="demo_TSHGeom.html">demo_TSHGeom</a> Complex geometry and mesh handing for THS geometry</li>
 </ul>
 </p><h2 id="4">Mesher demos</h2><p>
@@ -134,6 +139,7 @@ demo                                  voids2D | 1 |     0.93
 <li><a href="demo_Mesher_square.html">demo_Mesher_square</a> use Mesher to generate mesh in a square</li>
 <li><a href="demo_Mesher_globalField.html">demo_Mesher_globalField</a> mesh density control via global size field</li>
 <li><a href="demo_Mesher_refinement.html">demo_Mesher_refinement</a> uniform mesh refinement</li>
+<li><a href="demo_TriangleHighOrder.html">demo_TriangleHighOrder</a> Higher order trianglar elements</li>
 </ul>
 </p><h2 id="5">Object oriented interface demos</h2><p>
 <ul>
@@ -151,7 +157,12 @@ demo                                  voids2D | 1 |     0.93
 <li><a href="demo_mp_map_circle.html">demo_mp_map_circle</a> Use geometric transformation to map interior of an element</li>
 <li><a href="demo_mp_GeomTrans.html">demo_mp_GeomTrans</a> Illustrate usage of GeomTrans </li>
 </ul>
-</p><h2 id="6">Other demos</h2><p>
+</p><h2 id="6">Geometric utilities demos</h2><p>
+<ul>
+<li><a href="demo_triangle_barycentric.html">demo_triangle_barycentric</a> Barycentric coordinates in triangle</li>
+<li><a href="demo_triangle_rand_points.html">demo_triangle_rand_points</a> Random points in triangle</li>
+</ul>
+</p><h2 id="7">Other demos</h2><p>
 <ul>
 <li><a href="demo_edges_in_triangles.html">demo_edges_in_triangles</a> Show numbering of edges in traingles</li>
 <li><a href="demo_circ_hole_mesh.html">demo_circ_hole_mesh</a> mesh in region with circular hole</li>
@@ -194,6 +205,7 @@ mp_manage_demos('print')
 % <li><a href="demo_LShapeIfaceGeom_normals.html">demo_LShapeIfaceGeom_normals</a>Normals at edges in separate regions</li>
 % <li><a href="demo_NotchedRQGeom.html">demo_NotchedRQGeom</a> Geometric doman of quarter of notched rectangle</li>
 % <li><a href="demo_SquareHoleGeom.html">demo_SquareHoleGeom</a> Square with circular hole</li>
+% <li><a href="demo_TriangleGeom.html">demo_TriangleGeom</a> Triangular domain</li>
 % <li><a href="demo_TSHGeom.html">demo_TSHGeom</a> Complex geometry and mesh handing for THS geometry</li>
 % </ul>
 % </html>
@@ -204,6 +216,7 @@ mp_manage_demos('print')
 % <li><a href="demo_Mesher_square.html">demo_Mesher_square</a> use Mesher to generate mesh in a square</li>
 % <li><a href="demo_Mesher_globalField.html">demo_Mesher_globalField</a> mesh density control via global size field</li>
 % <li><a href="demo_Mesher_refinement.html">demo_Mesher_refinement</a> uniform mesh refinement</li>
+% <li><a href="demo_TriangleHighOrder.html">demo_TriangleHighOrder</a> Higher order trianglar elements</li>
 % </ul>
 % </html>
 %% Object oriented interface demos
@@ -222,6 +235,14 @@ mp_manage_demos('print')
 % <li><a href="demo_mp_tagging_nodes.html">demo_mp_tagging_nodes</a> Tag and visualize nodes in regions</li>
 % <li><a href="demo_mp_map_circle.html">demo_mp_map_circle</a> Use geometric transformation to map interior of an element</li>
 % <li><a href="demo_mp_GeomTrans.html">demo_mp_GeomTrans</a> Illustrate usage of GeomTrans </li>
+% </ul>
+% </html>
+%
+%% Geometric utilities demos
+% <html>
+% <ul>
+% <li><a href="demo_triangle_barycentric.html">demo_triangle_barycentric</a> Barycentric coordinates in triangle</li>
+% <li><a href="demo_triangle_rand_points.html">demo_triangle_rand_points</a> Random points in triangle</li>
 % </ul>
 % </html>
 %
