@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Types of Finite Elements</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-19"><meta name="DC.source" content="demo_FEM_FemType.m"><style type="text/css">
+      --><title>Types of Finite Elements</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-20"><meta name="DC.source" content="demo_FEM_FemType.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -69,7 +69,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
   </style></head><body><div class="content"><h1>Types of Finite Elements</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Demo contents</a></li><li><a href="#2">Types of finite elements</a></li></ul></div><h2 id="1">Demo contents</h2><p>This demo illustrates how to get information about type of finite elements supported by Nadamak.</p><pre class="codeinput">clear <span class="string">variables</span>;
 </pre><h2 id="2">Types of finite elements</h2><p>Finite elemet types are managed by enumeration class mp.FEM.FemTypes.</p><pre class="codeinput">enumeration(<span class="string">'mp.FEM.FemType'</span>)
 
-fem = mp.FEM.FemType.Tri6;
+fem = mp.FEM.FemType.Triang6;
 
 fprintf(<span class="string">'Information about FEM type: %s\n'</span>, fem);
 fprintf(<span class="string">'  GMSH element id: %d\n'</span>, fem.gmshID);
@@ -89,12 +89,12 @@ dofstopo = fem.dofsTopo;
 Enumeration members for class 'mp.FEM.FemType':
 
     Line2
-    Tri3
-    Tri6
-    Tri10
+    Triang3
+    Triang6
+    Triang10
     Quad4
 
-Information about FEM type: Tri6
+Information about FEM type: Triang6
   GMSH element id: 9
   is Lagrangaian: 1
   order : 2
@@ -133,7 +133,7 @@ clear variables;
 %
 enumeration('mp.FEM.FemType')
 
-fem = mp.FEM.FemType.Tri6;
+fem = mp.FEM.FemType.Triang6;
 
 fprintf('Information about FEM type: %s\n', fem);
 fprintf('  GMSH element id: %d\n', fem.gmshID);
