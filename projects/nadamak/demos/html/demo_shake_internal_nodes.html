@@ -1,0 +1,371 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>demo_shake_internal_nodes</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-28"><meta name="DC.source" content="demo_shake_internal_nodes.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Illustrate how to randomly shake internal nodes</a></li><li><a href="#2">Crete Mesher object</a></li><li><a href="#3">Create object describing geometric model to be meshed</a></li><li><a href="#4">Generate Mesh object</a></li><li><a href="#5">Visualize mesh</a></li><li><a href="#6">Selecting nodes</a></li><li><a href="#7">Iterate over elements and calculate maximum allowabel radius</a></li></ul></div><h2 id="1">Illustrate how to randomly shake internal nodes</h2><pre class="codeinput">clear <span class="string">variables</span>;
+</pre><h2 id="2">Crete Mesher object</h2><p>When Mesher object is created it takes care of initializing interface to GMSH mesh generator</p><pre class="codeinput">mesher = mp.Mesher();
+</pre><h2 id="3">Create object describing geometric model to be meshed</h2><pre class="codeinput">L = 10;
+geom = mp.geoms.SquareGeom(<span class="string">'my_domain'</span>, struct(<span class="string">'da'</span>, L));
+</pre><h2 id="4">Generate Mesh object</h2><pre class="codeinput">Ne = 5;
+meshingparams.lc = L/Ne;
+meshingparams.order = 2;
+mesh = mesher.generate(geom, meshingparams);
+</pre><h2 id="5">Visualize mesh</h2><pre class="codeinput">viewer = mp.Viewer();
+
+viewer.show(mesh);
+</pre><img vspace="5" hspace="5" src="demo_shake_internal_nodes_01.png" alt=""> <h2 id="6">Selecting nodes</h2><pre class="codeinput">selector.b_south = 0;
+selector.b_north = 0;
+selector.b_west = 0;
+selector.b_east = 0;
+
+nodesTag = mp_tag_region_nodes(mesh, selector, <span class="string">'min'</span>, 1);
+boundaryNodes = find(nodesTag==0);
+internalNodes = find(nodesTag==1);
+
+boundaryPts = mesh.nodes(boundaryNodes, :);
+
+viewer.showPoints(boundaryPts);
+
+radius = L*ones(mesh.nodesCount(), 1);
+</pre><img vspace="5" hspace="5" src="demo_shake_internal_nodes_02.png" alt=""> <h2 id="7">Iterate over elements and calculate maximum allowabel radius</h2><pre class="codeinput"><span class="keyword">for</span> i=1:mesh.elemsCount()
+  nodes = mesh.elemNodes(i);
+  nen = length(nodes);
+  pairs = combnk(1:nen, 2);
+  <span class="keyword">for</span> p = pairs'
+    n = nodes(p);
+    nodesDist = norm(diff(mesh.nodes(n,:), 1));
+    radius(n) = min(radius(n), nodesDist*[1;1]);
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+radius = 0.3*radius;
+
+direction = 2*pi*rand(mesh.nodesCount(), 1)
+distance = radius.*(0.5+0.5*rand(mesh.nodesCount(),1));
+u = distance.*[cos(direction), sin(direction)];
+
+hold <span class="string">on</span>
+
+<span class="keyword">for</span> i=1:mesh.nodesCount
+  <span class="keyword">if</span> nodesTag(i)
+    xy = mesh.nodes(i, 1:2);
+    r = radius(i);
+    circle = [xy(1)-r, xy(2)-r, 2*r, 2*r];
+    rectangle(<span class="string">'Position'</span>, circle, <span class="string">'Curvature'</span>, [1,1]);
+    xy(end+1,:) = [xy + u(i, :)];
+    line(xy(:,1), xy(:,2), <span class="string">'Color'</span>, <span class="string">'red'</span>);
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+mesh.nodes(internalNodes, 1:2) = mesh.nodes(internalNodes, 1:2)+ u(internalNodes, :);
+
+viewer.stackFigure();
+
+viewer.show(mesh);
+<span class="comment">% Report demo status</span>
+mp_manage_demos(<span class="string">'report'</span>, <span class="string">'shake_internal_nodes'</span>, true);
+</pre><pre class="codeoutput">
+direction =
+
+    6.1632
+    1.8009
+    5.0317
+    5.6304
+    3.7544
+    5.5544
+    5.9296
+    3.4505
+    4.5766
+    3.6239
+    0.1625
+    2.8056
+    4.0608
+    3.2748
+    2.3393
+    5.8882
+    5.2121
+    5.3350
+    2.3407
+    3.7271
+    5.4824
+    5.8654
+    4.2001
+    1.2992
+    4.1083
+    0.4527
+    2.5555
+    4.1905
+    5.8668
+    5.0953
+    3.0445
+    4.7548
+    2.6204
+    6.1059
+    6.2076
+    5.4296
+    2.4434
+    2.8572
+    1.5500
+    4.9287
+    5.5470
+    5.7410
+    3.5078
+    3.7628
+    0.9354
+    5.6531
+    2.8299
+    1.2923
+    5.6527
+    4.7915
+    5.5448
+    1.7904
+    4.2300
+    4.1738
+    0.7717
+    2.5593
+    1.7297
+    4.5030
+    1.7806
+    5.6310
+    5.1935
+    2.4506
+    3.1284
+    4.3656
+    5.2425
+    3.8304
+    3.6112
+    2.0486
+    2.8678
+    4.4849
+    5.5569
+    4.5293
+    0.1169
+    4.2397
+    2.7552
+    2.7509
+    0.7354
+    5.1188
+    2.0411
+    1.5471
+    2.1533
+    2.3605
+    3.4341
+    3.5306
+    2.4870
+    2.5015
+    3.2381
+    4.1314
+    5.9748
+    4.5386
+    2.5138
+    5.2268
+    0.8441
+    0.3799
+    0.5293
+    1.0298
+    2.0371
+    1.8958
+    0.0734
+    3.3923
+    0.5992
+    0.9206
+    3.9656
+    5.3993
+    6.1212
+    3.5867
+    6.2634
+    3.4780
+    3.2387
+    2.0777
+    2.7018
+    3.0901
+    0.4463
+    5.5778
+    0.4061
+    2.7406
+    5.1939
+    2.4789
+    3.8546
+    5.1437
+    5.5684
+    5.8503
+    1.1987
+    1.6247
+    5.6415
+    3.7282
+    3.1657
+    3.8504
+    5.1486
+    3.3420
+    1.2697
+    2.8519
+    2.6886
+    6.0699
+    3.8959
+    4.3693
+    4.5249
+    2.1796
+    3.2483
+    3.4978
+    0.9833
+    3.5315
+    4.3656
+    2.6795
+    5.2544
+    4.5954
+    2.2621
+    2.8539
+    2.4278
+    4.8730
+    4.6136
+    2.7035
+    4.3590
+    5.9390
+    4.9275
+    4.4332
+    0.6870
+
+</pre><img vspace="5" hspace="5" src="demo_shake_internal_nodes_03.png" alt=""> <img vspace="5" hspace="5" src="demo_shake_internal_nodes_04.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Illustrate how to randomly shake internal nodes
+%
+clear variables;
+%% Crete Mesher object
+% When Mesher object is created it takes care of initializing interface to GMSH mesh generator
+mesher = mp.Mesher();
+
+%% Create object describing geometric model to be meshed
+L = 10;
+geom = mp.geoms.SquareGeom('my_domain', struct('da', L));
+
+%% Generate Mesh object
+Ne = 5;
+meshingparams.lc = L/Ne;
+meshingparams.order = 2;
+mesh = mesher.generate(geom, meshingparams);
+
+%% Visualize mesh
+viewer = mp.Viewer();
+
+viewer.show(mesh);
+
+%% Selecting nodes
+selector.b_south = 0;
+selector.b_north = 0;
+selector.b_west = 0;
+selector.b_east = 0;
+
+nodesTag = mp_tag_region_nodes(mesh, selector, 'min', 1);
+boundaryNodes = find(nodesTag==0);
+internalNodes = find(nodesTag==1);
+
+boundaryPts = mesh.nodes(boundaryNodes, :);
+
+viewer.showPoints(boundaryPts);
+
+radius = L*ones(mesh.nodesCount(), 1);
+%% Iterate over elements and calculate maximum allowabel radius
+for i=1:mesh.elemsCount() 
+  nodes = mesh.elemNodes(i);
+  nen = length(nodes);
+  pairs = combnk(1:nen, 2);
+  for p = pairs'
+    n = nodes(p);	  
+    nodesDist = norm(diff(mesh.nodes(n,:), 1));
+    radius(n) = min(radius(n), nodesDist*[1;1]);
+  end	 
+end
+
+radius = 0.3*radius;
+
+direction = 2*pi*rand(mesh.nodesCount(), 1)
+distance = radius.*(0.5+0.5*rand(mesh.nodesCount(),1));
+u = distance.*[cos(direction), sin(direction)];
+
+hold on
+
+for i=1:mesh.nodesCount
+  if nodesTag(i)
+    xy = mesh.nodes(i, 1:2);
+    r = radius(i);
+    circle = [xy(1)-r, xy(2)-r, 2*r, 2*r];
+    rectangle('Position', circle, 'Curvature', [1,1]);
+    xy(end+1,:) = [xy + u(i, :)];
+    line(xy(:,1), xy(:,2), 'Color', 'red');
+  end
+end
+
+mesh.nodes(internalNodes, 1:2) = mesh.nodes(internalNodes, 1:2)+ u(internalNodes, :);
+
+viewer.stackFigure();
+
+viewer.show(mesh);
+% Report demo status
+mp_manage_demos('report', 'shake_internal_nodes', true);
+
+##### SOURCE END #####
+--></body></html>
