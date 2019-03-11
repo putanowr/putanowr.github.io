@@ -77,7 +77,7 @@ meshingParams.quadsonly = true;
 </pre><h2 id="5">Generate mesh</h2><p>The line below calls GMSH mesh generator and retrives generated mesh.  * node - array of node coordinates  * elements - cell array of elements data  * regions - array of structures describing physical regions</p><pre class="codeinput">[nodes, elements, regions, ~] = mp_gmsh_generate(gmshgeom, meshingParams);
 </pre><h2 id="6">Visualize mesh</h2><p>The simplest way to visaulize mesh obtained via mp_gmsh_generate is to use mp_plot_mesh.</p><pre class="codeinput">figure(1);
 clf;
-ghandles = mp_plot_mesh(nodes, elements);
+ghandles = mp_plot_mesh(gca, nodes, elements);
 axis(<span class="string">'equal'</span>)
 saveas(gcf, <span class="string">'demo_rectangle_mesh.png'</span>);
 <span class="comment">% Report demo status</span>
@@ -115,10 +115,11 @@ gmshgeom = mp_geom_rectangle([0,0], [2,1], struct('lc', 0.15));
 % use mp_plot_mesh.
 figure(1);
 clf;
-ghandles = mp_plot_mesh(nodes, elements);
+ghandles = mp_plot_mesh(gca, nodes, elements);
 axis('equal')
 saveas(gcf, 'demo_rectangle_mesh.png');
 % Report demo status
 mp_manage_demos('report', 'rectangle_mesh', true);
+
 ##### SOURCE END #####
 --></body></html>

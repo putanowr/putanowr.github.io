@@ -75,7 +75,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
   figure(i)
   clf;
   title(name);
-  mp_plot_mesh(nodes, elements);
+  mp_plot_mesh(gca, nodes, elements);
   axis(<span class="string">'equal'</span>)
   figname = [name, <span class="string">'.png'</span>];
   saveas(gcf, figname);
@@ -101,7 +101,7 @@ for i=1:length(mesh_names)
   figure(i)
   clf;
   title(name);
-  mp_plot_mesh(nodes, elements);
+  mp_plot_mesh(gca, nodes, elements);
   axis('equal')
   figname = [name, '.png'];
   saveas(gcf, figname);

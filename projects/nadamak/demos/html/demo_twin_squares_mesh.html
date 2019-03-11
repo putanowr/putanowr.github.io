@@ -82,7 +82,7 @@ gmshgeom = mp_geom_twin_squares(params);
 </pre><h2 id="6">Generate mesh and extract node coordinates and element-nodes adjacency</h2><pre class="codeinput">[nodes, elements, regions] = mp_gmsh_generate(gmshgeom, meshingParams);
 </pre><h2 id="8">Visualize mesh</h2><pre class="codeinput">figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 
 axis(<span class="string">'equal'</span>)
 saveas(gcf(), <span class="string">'twin_squares.png'</span>);
@@ -124,11 +124,12 @@ gmshgeom = mp_geom_twin_squares(params);
 %% Visualize mesh
 figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 
 axis('equal')
 saveas(gcf(), 'twin_squares.png');
 % Report demo status
 mp_manage_demos('report', 'twin_squares_mesh', true);
+
 ##### SOURCE END #####
 --></body></html>

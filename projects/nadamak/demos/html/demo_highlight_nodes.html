@@ -73,7 +73,7 @@ gmshgeom = mp_geom_rectangle([0,0], [2,1], struct(<span class="string">'lc'</spa
 [nodes, elements] = mp_gmsh_generate(gmshgeom, meshingParams);
 </pre><h2 id="2">Plot mesh</h2><p>The simplest way to visaulize mesh obtained via mp_gmsh_generate is to use mp_plot_mesh. The return value is structure with handles to plotted objects that represent nodes and elements.</p><pre class="codeinput">figure(1);
 clf;
-h = mp_plot_mesh(nodes, elements);
+h = mp_plot_mesh(gca, nodes, elements);
 axis(<span class="string">'equal'</span>)
 </pre><img vspace="5" hspace="5" src="demo_highlight_nodes_01.png" alt=""> <h2 id="3">Highlight nodes by color</h2><p>Create new figure</p><pre class="codeinput">figure(2);
 clf;
@@ -115,7 +115,7 @@ gmshgeom = mp_geom_rectangle([0,0], [2,1], struct('lc', 0.15));
 % objects that represent nodes and elements.
 figure(1);
 clf;
-h = mp_plot_mesh(nodes, elements);
+h = mp_plot_mesh(gca, nodes, elements);
 axis('equal')
 
 %% Highlight nodes by color
@@ -145,5 +145,6 @@ axis('equal')
 saveas(gcf, 'higlighted_nodes_by_color_and_size.png');
 % Report demo status
 mp_manage_demos('report', 'highlight_nodes', true);
+
 ##### SOURCE END #####
 --></body></html>

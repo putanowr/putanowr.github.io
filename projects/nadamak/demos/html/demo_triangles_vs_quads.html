@@ -81,14 +81,14 @@ gmshgeom = mp_geom_circ_hole(params);
 [nodes, elements] = mp_gmsh_generate(gmshgeom, meshingParams);
 </pre><p><h3>Visualize mesh</h3></p><pre class="codeinput">figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 axis(<span class="string">'equal'</span>)
 saveas(gcf(), <span class="string">'quads_circ_hole.png'</span>);
 </pre><img vspace="5" hspace="5" src="demo_triangles_vs_quads_01.png" alt=""> <h2 id="8">Generate triangles only mesh</h2><pre class="codeinput">meshingParams.quadsonly = false;
 [nodes, elements] = mp_gmsh_generate(gmshgeom, meshingParams);
 </pre><p><h3>Visualize mesh</h3></p><pre class="codeinput">figure(2);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 axis(<span class="string">'equal'</span>)
 saveas(gcf(), <span class="string">'tri_circ_hole.png'</span>);
 <span class="comment">% Report demo status</span>
@@ -130,7 +130,7 @@ meshingParams.quadsonly = true;
 % 
 figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 axis('equal')
 saveas(gcf(), 'quads_circ_hole.png');
 
@@ -143,10 +143,11 @@ meshingParams.quadsonly = false;
 % 
 figure(2);
 clf;
-mp_plot_mesh(nodes, elements); 
+mp_plot_mesh(gca, nodes, elements); 
 axis('equal')
 saveas(gcf(), 'tri_circ_hole.png');
 % Report demo status
 mp_manage_demos('report', 'triangles_vs_quads', true);
+
 ##### SOURCE END #####
 --></body></html>

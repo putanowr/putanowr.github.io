@@ -80,7 +80,7 @@ gmshgeom = mp_geom_circ_hole(params);
 </pre><h2 id="5">Generate mesh</h2><pre class="codeinput">[nodes, elements] = mp_gmsh_generate(gmshgeom, meshingParams);
 </pre><h2 id="6">Visualize mesh</h2><pre class="codeinput">figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 axis(<span class="string">'equal'</span>)
 saveas(gcf(), <span class="string">'circ_hole.png'</span>);
 <span class="comment">% Register demo status</span>
@@ -115,10 +115,11 @@ gmshgeom = mp_geom_circ_hole(params);
 %
 figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 axis('equal')
 saveas(gcf(), 'circ_hole.png');
 % Register demo status
 mp_manage_demos('report', 'circ_hole_mesh', true);
+
 ##### SOURCE END #####
 --></body></html>

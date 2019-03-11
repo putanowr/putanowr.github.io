@@ -94,7 +94,7 @@ meshingParams =
 
 </pre><h2 id="7">Visualize mesh</h2><pre class="codeinput">figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 axis(<span class="string">'equal'</span>)
 saveas(gcf(), <span class="string">'lshape.png'</span>);
 <span class="comment">% Report demo status</span>
@@ -141,7 +141,7 @@ meshingParams.lc = 0.4
 %% Visualize mesh
 figure(1);
 clf;
-mp_plot_mesh(nodes, elements); 
+mp_plot_mesh(gca, nodes, elements); 
 axis('equal')
 saveas(gcf(), 'lshape.png');
 % Report demo status

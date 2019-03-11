@@ -87,7 +87,7 @@ gmshgeom = mp_geom_voids2D(voids, params);
 </pre><h2 id="6">Generate mesh and extract node coordinates and element-nodes adjacency</h2><pre class="codeinput">[nodes, elements, regions] = mp_gmsh_generate(gmshgeom, meshingParams);
 </pre><h2 id="8">Visualize mesh</h2><pre class="codeinput">figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 
 axis(<span class="string">'equal'</span>)
 saveas(gcf(), <span class="string">'voids2D.png'</span>);
@@ -135,7 +135,7 @@ gmshgeom = mp_geom_voids2D(voids, params);
 %% Visualize mesh
 figure(1);
 clf;
-mp_plot_mesh(nodes, elements);
+mp_plot_mesh(gca, nodes, elements);
 
 axis('equal')
 saveas(gcf(), 'voids2D.png');

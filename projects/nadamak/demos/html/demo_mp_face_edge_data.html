@@ -101,7 +101,7 @@ k = 0;
 </pre><p>Plot arrows for tangent and normal vectors</p><pre class="codeinput">hold <span class="string">on</span>;
 quiver(quiverPoint(:,1), quiverPoint(:,2), tan(:,1), tan(:,2), 0.3, <span class="string">'LineWidth'</span>, 1, <span class="string">'Color'</span>, <span class="string">'red'</span>);
 quiver(quiverPoint(:,1), quiverPoint(:,2), nor(:,1), nor(:,2), 0.3, <span class="string">'LineWidth'</span>, 1, <span class="string">'Color'</span>, <span class="string">'blue'</span>);
-</pre><img vspace="5" hspace="5" src="demo_mp_face_edge_data_02.png" alt=""> <p>Plot labels indicating if elemen edge is boundary edge</p><pre class="codeinput">mp_plot_labels(labelCoords, struct(<span class="string">'labels'</span>, labels, <span class="string">'Color'</span>, <span class="string">'yellow'</span>, <span class="string">'FontSize'</span>, 12));
+</pre><img vspace="5" hspace="5" src="demo_mp_face_edge_data_02.png" alt=""> <p>Plot labels indicating if elemen edge is boundary edge</p><pre class="codeinput">mp_plot_labels(gca, labelCoords, struct(<span class="string">'labels'</span>, labels, <span class="string">'Color'</span>, <span class="string">'yellow'</span>, <span class="string">'FontSize'</span>, 12));
 </pre><img vspace="5" hspace="5" src="demo_mp_face_edge_data_03.png" alt=""> <pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'mp_face_edge_data'</span>, true);
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
@@ -172,7 +172,7 @@ quiver(quiverPoint(:,1), quiverPoint(:,2), tan(:,1), tan(:,2), 0.3, 'LineWidth',
 quiver(quiverPoint(:,1), quiverPoint(:,2), nor(:,1), nor(:,2), 0.3, 'LineWidth', 1, 'Color', 'blue');
 %%
 % Plot labels indicating if elemen edge is boundary edge
-mp_plot_labels(labelCoords, struct('labels', labels, 'Color', 'yellow', 'FontSize', 12));
+mp_plot_labels(gca, labelCoords, struct('labels', labels, 'Color', 'yellow', 'FontSize', 12));
 
 
 %%

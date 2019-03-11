@@ -81,7 +81,7 @@ geom.params.lcFactors = [1,0.2,1,1];
 </pre><h2 id="6">Generate Mesh object</h2><pre class="codeinput">mesh = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.5));
 </pre><h2 id="7">Visualize mesh</h2><p>The simplest way to visaulize mp_plot_mesh.</p><pre class="codeinput">figure(1);
 clf;
-ghandles = mp_plot_mesh(mesh.nodes, mesh.elements);
+ghandles = mp_plot_mesh(gca, mesh.nodes, mesh.elements);
 axis(<span class="string">'equal'</span>)
 saveas(gcf, <span class="string">'demo_square_mesh.png'</span>);
 <span class="comment">% Report demo status</span>
@@ -119,7 +119,7 @@ mesh = mesher.generate(geom, struct('lc', 0.5));
 % The simplest way to visaulize mp_plot_mesh.
 figure(1);
 clf;
-ghandles = mp_plot_mesh(mesh.nodes, mesh.elements);
+ghandles = mp_plot_mesh(gca, mesh.nodes, mesh.elements);
 axis('equal')
 saveas(gcf, 'demo_square_mesh.png');
 % Report demo status

@@ -70,9 +70,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 figure(1);
 clf;
-ghandles = mp_plot_mesh(nodes, elements);
-mp_plot_labels(ghandles.elements, struct(<span class="string">'Color'</span>, <span class="string">'red'</span>));
-mp_plot_labels(ghandles.nodes);
+ghandles = mp_plot_mesh(gca, nodes, elements);
+mp_plot_labels(gca, ghandles.elements, struct(<span class="string">'Color'</span>, <span class="string">'red'</span>));
+mp_plot_labels(gca, ghandles.nodes);
 axis(<span class="string">'equal'</span>)
 saveas(gcf, <span class="string">'demo_labels.png'</span>);
 <span class="comment">% Report demo status</span>
@@ -85,9 +85,9 @@ mp_manage_demos(<span class="string">'report'</span>, <span class="string">'labe
 
 figure(1);
 clf;
-ghandles = mp_plot_mesh(nodes, elements);
-mp_plot_labels(ghandles.elements, struct('Color', 'red'));
-mp_plot_labels(ghandles.nodes);
+ghandles = mp_plot_mesh(gca, nodes, elements);
+mp_plot_labels(gca, ghandles.elements, struct('Color', 'red'));
+mp_plot_labels(gca, ghandles.nodes);
 axis('equal')
 saveas(gcf, 'demo_labels.png');
 % Report demo status
