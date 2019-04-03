@@ -1,0 +1,179 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Meshes &#8212; Nadamak 0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Interpolation on meshes" href="mesh_interpolation.html" />
+    <link rel="prev" title="User guide for Nadamak" href="tutorial.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../mat-modindex.html" title="MATLAB Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mesh_interpolation.html" title="Interpolation on meshes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="User guide for Nadamak"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nadamak 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="tutorial.html" accesskey="U">User guide for Nadamak</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="meshes">
+<span id="mesh-sec"></span><h1>Meshes<a class="headerlink" href="#meshes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-meshes-from-mesh-factory">
+<h2>Simple meshes from mesh factory<a class="headerlink" href="#simple-meshes-from-mesh-factory" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="visualizing-meshes">
+<h2>Visualizing meshes<a class="headerlink" href="#visualizing-meshes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="reading-meshes-from-files">
+<h2>Reading meshes from files<a class="headerlink" href="#reading-meshes-from-files" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="interface-to-mesh-generators">
+<h2>Interface to mesh generators<a class="headerlink" href="#interface-to-mesh-generators" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="predefined-geometric-models">
+<h2>Predefined geometric models<a class="headerlink" href="#predefined-geometric-models" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="basic-mesh-data">
+<h2>Basic mesh data<a class="headerlink" href="#basic-mesh-data" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="handling-mesh-connectivity">
+<h2>Handling mesh connectivity<a class="headerlink" href="#handling-mesh-connectivity" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="building-mesh-hierarchies">
+<h2>Building mesh hierarchies<a class="headerlink" href="#building-mesh-hierarchies" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="submeshes">
+<h2>Submeshes<a class="headerlink" href="#submeshes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="geometric-transofrmation-of-meshes">
+<h2>Geometric transofrmation of meshes<a class="headerlink" href="#geometric-transofrmation-of-meshes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="selecting-and-tagging-mesh-enetities">
+<h2>Selecting and tagging mesh enetities<a class="headerlink" href="#selecting-and-tagging-mesh-enetities" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="selecting-nodes">
+<h3>Selecting nodes<a class="headerlink" href="#selecting-nodes" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="selecting-edges">
+<h3>Selecting edges<a class="headerlink" href="#selecting-edges" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="selecting-cells">
+<h3>Selecting cells<a class="headerlink" href="#selecting-cells" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="selecting-entities-per-dimension">
+<h3>Selecting entities per dimension<a class="headerlink" href="#selecting-entities-per-dimension" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Meshes</a><ul>
+<li><a class="reference internal" href="#simple-meshes-from-mesh-factory">Simple meshes from mesh factory</a></li>
+<li><a class="reference internal" href="#visualizing-meshes">Visualizing meshes</a></li>
+<li><a class="reference internal" href="#reading-meshes-from-files">Reading meshes from files</a></li>
+<li><a class="reference internal" href="#interface-to-mesh-generators">Interface to mesh generators</a></li>
+<li><a class="reference internal" href="#predefined-geometric-models">Predefined geometric models</a></li>
+<li><a class="reference internal" href="#basic-mesh-data">Basic mesh data</a></li>
+<li><a class="reference internal" href="#handling-mesh-connectivity">Handling mesh connectivity</a></li>
+<li><a class="reference internal" href="#building-mesh-hierarchies">Building mesh hierarchies</a></li>
+<li><a class="reference internal" href="#submeshes">Submeshes</a></li>
+<li><a class="reference internal" href="#geometric-transofrmation-of-meshes">Geometric transofrmation of meshes</a></li>
+<li><a class="reference internal" href="#selecting-and-tagging-mesh-enetities">Selecting and tagging mesh enetities</a><ul>
+<li><a class="reference internal" href="#selecting-nodes">Selecting nodes</a></li>
+<li><a class="reference internal" href="#selecting-edges">Selecting edges</a></li>
+<li><a class="reference internal" href="#selecting-cells">Selecting cells</a></li>
+<li><a class="reference internal" href="#selecting-entities-per-dimension">Selecting entities per dimension</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="previous chapter">User guide for Nadamak</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mesh_interpolation.html"
+                        title="next chapter">Interpolation on meshes</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/src/tutorial/mesh.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../mat-modindex.html" title="MATLAB Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mesh_interpolation.html" title="Interpolation on meshes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="User guide for Nadamak"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nadamak 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="tutorial.html" >User guide for Nadamak</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Roman Putanowicz.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.9.
+    </div>
+  </body>
+</html>
