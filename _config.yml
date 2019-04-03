@@ -15,7 +15,5 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://putanowr.github.io" # the base hostname & protocol for your site
 github_username:  putanowr
-include: "projects/nadamak/guide/html/html/_images"
-keep_files: "projects/nadamak/guide/html/html/_images"
 # Build settings
 markdown: kramdown
