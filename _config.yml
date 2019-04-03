@@ -16,5 +16,6 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 github_username:  putanowr
 keep_files: "projects/nadamak/guide/html/html/_images"
+exclude: "projects/nadamak/guide/html/html/_images"
 # Build settings
 markdown: kramdown
