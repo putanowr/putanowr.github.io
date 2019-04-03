@@ -16,7 +16,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 github_username:  putanowr
 include: projects/nadamak/guide/html/html/_static
-include: projects/nadamak/guide/html/html/_images, notchedrectquarter.png 
+include: "projects/nadamak/guide/html/html/_images" 
 include: projects/nadamak/guide/html/html/_source
 
 # Build settings
