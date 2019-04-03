@@ -18,3 +18,4 @@ github_username:  putanowr
 
 # Build settings
 markdown: kramdown
+include: projects/nadamak/guide/html/html/_static
