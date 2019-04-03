@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Adding new meshing domains &#8212; Nadamak 0.1 documentation</title>
-    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="stylesheet" href="../../../static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../static/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/underscore.js"></script>
+    <script type="text/javascript" src="../../../static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -63,7 +63,7 @@ geometric model can be added to Nadamak. The steps involve:</p>
 <p>These steps will be illustrated in details on the example of geometric model of
 a quarter of notched rectangle domain shown in <a class="reference internal" href="#fig-nrq-domain"><span class="std std-numref">Fig. 1</span></a>.</p>
 <div class="figure" id="id3">
-<span id="fig-nrq-domain"></span><img alt="../../../_images/notchedrectquarter.png" src="../../../_images/notchedrectquarter.png" />
+<span id="fig-nrq-domain"></span><img alt="../../../images/notchedrectquarter.png" src="../../../images/notchedrectquarter.png" />
 <p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Geometric domain of a quarter of notched rectangle.</span></p>
 </div>
 <div class="section" id="creating-gmsh-geometry-input-file">
@@ -129,13 +129,13 @@ as long as they can be used as Matlab variable names.</p>
 <p>Having the file defined we can load it into GMSH to check if the geometry
 is defined properly as illustrated in <a class="reference internal" href="#fig-nrq-gmsh-geo"><span class="std std-numref">Fig. 2</span></a>.</p>
 <div class="figure" id="id5">
-<span id="fig-nrq-gmsh-geo"></span><a class="reference internal image-reference" href="../../../_images/notchedrectquarter_gmsh_geo.png"><img alt="../../../_images/notchedrectquarter_gmsh_geo.png" src="../../../_images/notchedrectquarter_gmsh_geo.png" style="width: 207.60000000000002px; height: 240.0px;" /></a>
+<span id="fig-nrq-gmsh-geo"></span><a class="reference internal image-reference" href="../../../images/notchedrectquarter_gmsh_geo.png"><img alt="../../../images/notchedrectquarter_gmsh_geo.png" src="../../../images/notchedrectquarter_gmsh_geo.png" style="width: 207.60000000000002px; height: 240.0px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">GMSH visualisation of geometry defined in <a class="reference internal" href="#lst-notchedrectquarter"><span class="std std-numref">Listing 1</span></a>.</span></p>
 </div>
 <p>The last step is to run GMSH to generate mesh for the defined geometry
 as illustrated in <a class="reference internal" href="#fig-nrq-gmsh-mesh"><span class="std std-numref">Fig. 3</span></a>.</p>
 <div class="figure" id="id6">
-<span id="fig-nrq-gmsh-mesh"></span><a class="reference internal image-reference" href="../../../_images/notchedrectquarter_gmsh_mesh.png"><img alt="../../../_images/notchedrectquarter_gmsh_mesh.png" src="../../../_images/notchedrectquarter_gmsh_mesh.png" style="width: 259.5px; height: 300.0px;" /></a>
+<span id="fig-nrq-gmsh-mesh"></span><a class="reference internal image-reference" href="../../../images/notchedrectquarter_gmsh_mesh.png"><img alt="../../../images/notchedrectquarter_gmsh_mesh.png" src="../../../images/notchedrectquarter_gmsh_mesh.png" style="width: 259.5px; height: 300.0px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Mesh generated from the file shown in <a class="reference internal" href="#lst-notchedrectquarter"><span class="std std-numref">Listing 1</span></a>.</span></p>
 </div>
 </div>
@@ -280,7 +280,7 @@ shown in <a class="reference internal" href="#fig-notched-mesh-v1"><span class="
 </td></tr></table></div>
 </div>
 <div class="figure" id="id9">
-<span id="fig-notched-mesh-v1"></span><img alt="../../../_images/NotchedRQGeom_mesh_v1.png" src="../../../_images/NotchedRQGeom_mesh_v1.png" />
+<span id="fig-notched-mesh-v1"></span><img alt="../../../images/NotchedRQGeom_mesh_v1.png" src="../../../images/NotchedRQGeom_mesh_v1.png" />
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Mesh generated and visualized in <a class="reference internal" href="#lst-notched-use-v1"><span class="std std-numref">Listing 3</span></a>.</span></p>
 </div>
 </div>
@@ -378,7 +378,7 @@ possible to control both geometry and mesh density as shown in <a class="referen
 </td></tr></table></div>
 </div>
 <div class="figure" id="id13">
-<span id="fig-notched-mesh-v2"></span><img alt="../../../_images/NotchedRQGeom_mesh_v2.png" src="../../../_images/NotchedRQGeom_mesh_v2.png" />
+<span id="fig-notched-mesh-v2"></span><img alt="../../../images/NotchedRQGeom_mesh_v2.png" src="../../../images/NotchedRQGeom_mesh_v2.png" />
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Mesh generated and visualized in <a class="reference internal" href="#lst-notched-use-v2"><span class="std std-numref">Listing 6</span></a>.</span></p>
 </div>
 <p>The exercise of extending the class <code class="code docutils literal notranslate"><span class="pre">NotchedRQGeom</span></code> clearly shows how
@@ -411,7 +411,7 @@ Further extensions to a geometric model class and template file are case specifi
 <div class="section" id="subdivision-of-meshing-domain-into-subdomains">
 <h3>Subdivision of meshing domain into subdomains<a class="headerlink" href="#subdivision-of-meshing-domain-into-subdomains" title="Permalink to this headline">¶</a></h3>
 <div class="figure" id="id15">
-<span id="fig-notched-mesh-v3"></span><img alt="../../../_images/NotchedRQGeom_mesh_v3.png" src="../../../_images/NotchedRQGeom_mesh_v3.png" />
+<span id="fig-notched-mesh-v3"></span><img alt="../../../images/NotchedRQGeom_mesh_v3.png" src="../../../images/NotchedRQGeom_mesh_v3.png" />
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Meshing domain subdivided into subdomain.</span></p>
 </div>
 <p class="rubric">Footnotes</p>
@@ -457,7 +457,7 @@ Further extensions to a geometric model class and template file are case specifi
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../../_sources/src/development/geodomains/addnewdomain.rst.txt"
+      <li><a href="../../../sources/src/development/geodomains/addnewdomain.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
