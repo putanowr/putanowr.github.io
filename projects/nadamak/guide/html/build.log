@@ -8,4 +8,5 @@ WARNING: while setting up extension sphinxcontrib.matlab: directive 'autoattribu
 WARNING: while setting up extension sphinxcontrib.matlab: directive 'autoinstanceattribute' is already registered, it will be overridden
 WARNING: [sphinxcontrib-matlabdomain] Unexpected function name: "mp_gmsh_mesh_factory". Expected "meshFactoryHelper" in module "packages.+mp".
 /devel/jenkins/workspace/Nadamak_guide/src/packages/+mp:docstring of packages.+mp.Mesh.cellTypes:4: WARNING: Unexpected indentation.
+/devel/jenkins/workspace/Nadamak_guide/docs/guide/en/source/src/tutorial/mesh.rst:6: WARNING: duplicate label mesh-sec, other instance in /devel/jenkins/workspace/Nadamak_guide/docs/guide/en/source/src/reference/mp/Mesh.rst
 WARNING: html_static_path entry '/devel/jenkins/workspace/Nadamak_guide/docs/guide/en/source/_static' does not exist
