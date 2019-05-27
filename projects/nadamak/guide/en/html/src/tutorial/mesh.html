@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Meshes &#8212; Nadamak 0.1 documentation</title>
+    <title>Meshes &#8212; Computational mechanics with Nadamak</title>
     <link rel="stylesheet" href="../../static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../static/documentation_options.js"></script>
@@ -34,7 +34,7 @@
         <li class="right" >
           <a href="tutorial.html" title="User guide for Nadamak"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nadamak 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nadamak Guide</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="tutorial.html" accesskey="U">User guide for Nadamak</a> &#187;</li> 
       </ul>
     </div>  
@@ -55,8 +55,21 @@
 <div class="section" id="reading-meshes-from-files">
 <h2>Reading meshes from files<a class="headerlink" href="#reading-meshes-from-files" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="interface-to-mesh-generators">
-<h2>Interface to mesh generators<a class="headerlink" href="#interface-to-mesh-generators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mesh-generation">
+<h2>Mesh generation<a class="headerlink" href="#mesh-generation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dimension-of-the-generated-mesh">
+<h3>Dimension of the generated mesh<a class="headerlink" href="#dimension-of-the-generated-mesh" title="Permalink to this headline">¶</a></h3>
+<p>For a start we should clearly distinguish between dimension of gemetric space
+into which meshis embedded and the topological dimension of the mesh. The
+geometric dimension, that is number of coordinates a point is always 3. The
+topological dimension can vary between 1 and 3. As meshes can consist of
+elements of different topological dimension the topological dimension of a mesh
+is the highest dimension of its elements. If we denote by <span class="math notranslate nohighlight">\(dim_{\text{Geom}}\)</span>
+intrinsic dimension of a geometric object and by <span class="math notranslate nohighlight">\(dim_{\text{Mesh}}\)</span> topological
+dimension of the mesh of the object then we always have:</p>
+<div class="math notranslate nohighlight">
+\[dim_{\text{Mesh}} \leqslant dim_{\text{Geom}}\]</div>
+</div>
 </div>
 <div class="section" id="predefined-geometric-models">
 <h2>Predefined geometric models<a class="headerlink" href="#predefined-geometric-models" title="Permalink to this headline">¶</a></h2>
@@ -105,7 +118,10 @@
 <li><a class="reference internal" href="#simple-meshes-from-mesh-factory">Simple meshes from mesh factory</a></li>
 <li><a class="reference internal" href="#visualizing-meshes">Visualizing meshes</a></li>
 <li><a class="reference internal" href="#reading-meshes-from-files">Reading meshes from files</a></li>
-<li><a class="reference internal" href="#interface-to-mesh-generators">Interface to mesh generators</a></li>
+<li><a class="reference internal" href="#mesh-generation">Mesh generation</a><ul>
+<li><a class="reference internal" href="#dimension-of-the-generated-mesh">Dimension of the generated mesh</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#predefined-geometric-models">Predefined geometric models</a></li>
 <li><a class="reference internal" href="#basic-mesh-data">Basic mesh data</a></li>
 <li><a class="reference internal" href="#handling-mesh-connectivity">Handling mesh connectivity</a></li>
@@ -167,7 +183,7 @@
         <li class="right" >
           <a href="tutorial.html" title="User guide for Nadamak"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Nadamak 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Nadamak Guide</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="tutorial.html" >User guide for Nadamak</a> &#187;</li> 
       </ul>
     </div>
