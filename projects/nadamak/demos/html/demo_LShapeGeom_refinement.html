@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Lc parameter versus mesh size</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-11"><meta name="DC.source" content="demo_LShapeGeom_refinement.m"><style type="text/css">
+      --><title>Lc parameter versus mesh size</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-27"><meta name="DC.source" content="demo_LShapeGeom_refinement.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -101,8 +101,24 @@ numNodes = zeros(1, nlc);
 </pre><img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_02.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_03.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_04.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_05.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_06.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_07.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_08.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_09.png" alt=""> <img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_10.png" alt=""> <h2 id="8">Number of nodes versu lc</h2><pre class="codeinput">semilogy(lc, numNodes, <span class="string">'-*'</span>);
 </pre><img vspace="5" hspace="5" src="demo_LShapeGeom_refinement_11.png" alt=""> <h2 id="9">Table of mesh data</h2><pre class="codeinput">numNodes_VS_lc = [lc; numNodes];
 
-f = figure();
-t = uitable(f, <span class="string">'Data'</span>, numNodes_VS_lc, <span class="string">'Position'</span>, [20,20,430,80]);
+<span class="keyword">if</span> ispc <span class="comment">% Table can be published only under Windows.</span>
+  f = figure();
+  t = uitable(f, <span class="string">'Data'</span>, numNodes_VS_lc, <span class="string">'Position'</span>, [20,20,430,80]);
+<span class="keyword">else</span>
+  disp(numNodes_VS_lc)
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">   1.0e+03 *
+
+  Columns 1 through 7
+
+    0.0012    0.0009    0.0007    0.0005    0.0003    0.0002    0.0001
+    0.0480    0.0690    0.1030    0.1790    0.3500    0.9700    3.1810
+
+  Column 8
+
+    0.0001
+    6.7950
+
 </pre><pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'LShapeGeom_refinement'</span>, true);
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
@@ -165,9 +181,12 @@ semilogy(lc, numNodes, '-*');
 %% Table of mesh data
 numNodes_VS_lc = [lc; numNodes];
 
-f = figure();
-t = uitable(f, 'Data', numNodes_VS_lc, 'Position', [20,20,430,80]);
-
+if ispc % Table can be published only under Windows.
+  f = figure();
+  t = uitable(f, 'Data', numNodes_VS_lc, 'Position', [20,20,430,80]);
+else
+  disp(numNodes_VS_lc)
+end
 
 %%
 mp_manage_demos('report', 'LShapeGeom_refinement', true);

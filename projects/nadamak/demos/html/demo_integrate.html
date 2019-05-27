@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>demo_integrate</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-11"><meta name="DC.source" content="demo_integrate.m"><style type="text/css">
+      --><title>demo_integrate</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-27"><meta name="DC.source" content="demo_integrate.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -72,7 +72,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 geom = mp.geoms.SquareGeom(<span class="string">'my_domain'</span>, struct(<span class="string">'da'</span>, L));
 </pre><h2 id="4">Generate Mesh object</h2><pre class="codeinput">Ne = 5;
 meshingparams.lc = L/Ne;
-meshingparams.order = 3;
+meshingparams.order = 2;
 mesh = mesher.generate(geom, meshingparams);
 </pre><h2 id="5">Selecting nodes</h2><pre class="codeinput">selector.b_south = 0;
 selector.b_north = 0;
@@ -108,10 +108,9 @@ quadrature = mp.IM.Triangle(4);
 
 s = 0.0;
 <span class="keyword">for</span> i=1:mesh.perDimCount(mesh.dim)
-  J = gmap.jacobian(quadrature.pts, i, u);
-  <span class="keyword">for</span> k=1:numel(quadrature.w)
-    j = det(J(:,:,k));
-    s = s+j*quadrature.w(k);
+  J = gmap.volumeForm(quadrature.pts, i, u);
+  <span class="keyword">for</span> k=1:numel(quadrature.w);
+    s = s+J*quadrature.w(k);
   <span class="keyword">end</span>
 <span class="keyword">end</span>
 
@@ -202,7 +201,12 @@ qd =
     Gauss1D_11: [1&times;1 struct]
     Triangle_1: [1&times;1 struct]
 
-Integral : 197.127
+Integral : 195.91
+Integral : 196.737
+Integral : 197.995
+Integral : 199.372
+Integral : 200.552
+Integral : 201.29
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Illustrate how to randomly shake internal nodes
@@ -219,7 +223,7 @@ geom = mp.geoms.SquareGeom('my_domain', struct('da', L));
 %% Generate Mesh object
 Ne = 5;
 meshingparams.lc = L/Ne;
-meshingparams.order = 3;
+meshingparams.order = 2;
 mesh = mesher.generate(geom, meshingparams);
 
 %% Selecting nodes
@@ -258,10 +262,9 @@ quadrature = mp.IM.Triangle(4);
 
 s = 0.0;
 for i=1:mesh.perDimCount(mesh.dim)
-  J = gmap.jacobian(quadrature.pts, i, u);
-  for k=1:numel(quadrature.w)
-    j = det(J(:,:,k));
-    s = s+j*quadrature.w(k);
+  J = gmap.volumeForm(quadrature.pts, i, u);
+  for k=1:numel(quadrature.w);
+    s = s+J*quadrature.w(k);
   end
 end
 

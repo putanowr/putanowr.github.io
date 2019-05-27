@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Shape functions for Triang10 element</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-11"><meta name="DC.source" content="demo_FEM_shapeFunctions.m"><style type="text/css">
+      --><title>Shape functions for Triang10 element</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-27"><meta name="DC.source" content="demo_FEM_shapeFunctions.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -73,15 +73,23 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
   N = fem.sfh(xy);
 </pre><pre class="codeoutput">Fem type: Line2
+</pre><pre class="codeoutput">Fem type: Line3
 </pre><pre class="codeoutput">Fem type: Triang3
 </pre><pre class="codeoutput">Fem type: Triang6
 </pre><pre class="codeoutput">Fem type: Triang10
 </pre><pre class="codeoutput">Fem type: Quad4
+</pre><pre class="codeoutput">Fem type: Quad8
+</pre><pre class="codeoutput">Fem type: Quad9
+</pre><pre class="codeoutput">Fem type: Hex8
 </pre><p>Display matrix of shape functions at nodes coloriing the values.</p><pre class="codeinput">  mp_disp_sf_matrix(N, 5, 2);
 
   fprintf(<span class="string">'----------------------------------------\n'</span>);
 </pre><pre class="codeoutput">   1.00   0.00
    0.00   1.00
+----------------------------------------
+</pre><pre class="codeoutput">   1.00   0.00   0.00
+   0.00   1.00   0.00
+   0.00   0.00   1.00
 ----------------------------------------
 </pre><pre class="codeoutput">   1.00   0.00   0.00
    0.00   1.00   0.00
@@ -109,6 +117,34 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
   -0.00   1.00   0.00  -0.00
    0.00  -0.00   1.00  -0.00
   -0.00  -0.00   0.00   1.00
+----------------------------------------
+</pre><pre class="codeoutput">   1.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+   0.00   1.00   0.00   0.00   0.00   0.00   0.00   0.00
+   0.00   0.00   1.00   0.00   0.00   0.00   0.00   0.00
+   0.00   0.00   0.00   1.00   0.00   0.00   0.00   0.00
+   0.00   0.00   0.00   0.00   1.00   0.00   0.00   0.00
+   0.00   0.00   0.00   0.00   0.00   1.00   0.00   0.00
+   0.00   0.00   0.00   0.00   0.00   0.00   1.00   0.00
+   0.00   0.00   0.00   0.00   0.00   0.00   0.00   1.00
+----------------------------------------
+</pre><pre class="codeoutput">   1.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+   0.00   1.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+   0.00   0.00   1.00   0.00   0.00   0.00   0.00   0.00   0.00
+   0.00   0.00   0.00   1.00   0.00   0.00   0.00   0.00   0.00
+   0.00   0.00   0.00   0.00   1.00   0.00   0.00   0.00   0.00
+   0.00   0.00   0.00   0.00   0.00   1.00   0.00   0.00   0.00
+   0.00   0.00   0.00   0.00   0.00   0.00   1.00   0.00   0.00
+   0.00   0.00   0.00   0.00   0.00   0.00   0.00   1.00   0.00
+   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   1.00
+----------------------------------------
+</pre><pre class="codeoutput">   1.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00
+   0.00   1.00   0.00   0.00   0.00   0.00   0.00   0.00
+   0.00   0.00   1.00   0.00   0.00   0.00   0.00   0.00
+   0.00   0.00   0.00   1.00   0.00   0.00   0.00   0.00
+   0.00   0.00   0.00   0.00   1.00   0.00   0.00   0.00
+   0.00   0.00   0.00   0.00   0.00   1.00   0.00   0.00
+   0.00   0.00   0.00   0.00   0.00   0.00   1.00   0.00
+   0.00   0.00   0.00   0.00   0.00   0.00   0.00   1.00
 ----------------------------------------
 </pre><pre class="codeinput"><span class="keyword">end</span>
 </pre><pre class="codeinput">mp_manage_demos(<span class="string">'report'</span>, <span class="string">'FEM_shapeFunctions'</span>, true);
