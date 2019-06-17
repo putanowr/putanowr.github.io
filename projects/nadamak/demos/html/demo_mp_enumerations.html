@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Using enumerations for categorical data</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-28"><meta name="DC.source" content="demo_mp_enumerations.m"><style type="text/css">
+      --><title>Using enumerations for categorical data</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-18"><meta name="DC.source" content="demo_mp_enumerations.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Using enumerations for categorical data</h1><!--introduction--><p>Using integer values to describe categorical data, e.g. types of elements,types of DOFs, etc. is cumbersome and error prone. It forces developers to remember many 'magic' values.</p><p>Contrary to this, enumeration classes provide many advantages. Besides improving code readability they can also prevent many, hard to debug, errors. This is the reason that combMESBMRS package provides several enum types.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Enums for DOF types</a></li><li><a href="#8">Enums for finite element types</a></li><li><a href="#9">Enums for boundary condition types</a></li><li><a href="#10">Check if value is an enum or object of given class</a></li></ul></div><h2 id="1">Enums for DOF types</h2><pre class="codeinput">enumeration <span class="string">mp.FEM.DofType</span>
+  </style></head><body><div class="content"><h1>Using enumerations for categorical data</h1><!--introduction--><p>Using integer values to describe categorical data, e.g. types of elements,types of DOFs, etc. is cumbersome and error prone. It forces developers to remember many 'magic' values.</p><p>Contrary to this, enumeration classes provide many advantages. Besides improving code readability they can also prevent many, hard to debug, errors. This is the reason that Nadamak package provides several enum types.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Enums for DOF types</a></li><li><a href="#8">Enums for finite element types</a></li><li><a href="#9">Enums for boundary condition types</a></li><li><a href="#10">Check if value is an enum or object of given class</a></li></ul></div><h2 id="1">Enums for DOF types</h2><pre class="codeinput">enumeration <span class="string">mp.FEM.DofType</span>
 </pre><pre class="codeoutput">
 Enumeration members for class 'mp.FEM.DofType':
 
@@ -158,7 +158,7 @@ ans =
 %
 % Contrary to this, enumeration classes provide many advantages. Besides
 % improving code readability they can also prevent many, hard to debug,
-% errors. This is the reason that combMESBMRS package provides several
+% errors. This is the reason that Nadamak package provides several
 % enum types. 
 %
 
