@@ -69,262 +69,45 @@ Bla bla.</p>
 </div>
 <div class="section" id="reading-and-writing">
 <h3>Reading and writing<a class="headerlink" href="#reading-and-writing" title="Permalink to this headline">¶</a></h3>
-<dl class="method">
-<dt id="packages.+mp.Mesh.setParent">
-<code class="descclassname">Mesh.</code><code class="descname">setParent</code><span class="sig-paren">(</span><em>parent_</em>, <em>nodesMap</em>, <em>elemsMap</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.setParent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.cellTypes">
-<code class="descclassname">Mesh.</code><code class="descname">cellTypes</code><span class="sig-paren">(</span><em>dimension</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.cellTypes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return vector of cell types for mesh elements. If and argument is
-given it is the dimension to which the search should be restricted
-Example:
-mesh.cellTypes() return the cell type of dimension equal to
-dimension of the mesh</p>
-<p>mesh.cellTypes(1) return the cell type of 1D elements</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.faceEdgeOrient">
-<code class="descclassname">Mesh.</code><code class="descname">faceEdgeOrient</code><span class="sig-paren">(</span><em>face</em>, <em>edgeNum</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.faceEdgeOrient" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.getAdjacency">
-<code class="descclassname">Mesh.</code><code class="descname">getAdjacency</code><span class="sig-paren">(</span><em>from</em>, <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.getAdjacency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return Adjacency object. Arguments ‘from’ and ‘to’ are dimensions of
-topological mesh entities for which adjacency should be calculated.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.updateAdjacency">
-<code class="descclassname">Mesh.</code><code class="descname">updateAdjacency</code><span class="sig-paren">(</span><em>from</em>, <em>to</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.updateAdjacency" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.elemNodes">
-<code class="descclassname">Mesh.</code><code class="descname">elemNodes</code><span class="sig-paren">(</span><em>elemsId</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.elemNodes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return Id of nodes of given element.
-If single element is specified the returned vector corresponds
-to element connectivity.
-If more elements are specified then the returned vector is a sorted
-union of unique nodes Id.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.nodesCount">
-<code class="descclassname">Mesh.</code><code class="descname">nodesCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.nodesCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return number of nodes in the mesh.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.facesCount">
-<code class="descclassname">Mesh.</code><code class="descname">facesCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.facesCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return number of faces in the mesh</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.edgesCount">
-<code class="descclassname">Mesh.</code><code class="descname">edgesCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.edgesCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return number of edges in the mesh</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.regionsCount">
-<code class="descclassname">Mesh.</code><code class="descname">regionsCount</code><span class="sig-paren">(</span><em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.regionsCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return number of regions.
-If no argument given then counts regions of the dimension equal
-to the dimension of the mesh. Othervise counts regions of given
-dimension.</p>
-<dl class="docutils">
-<dt>Example:</dt>
-<dd>mesh.regionsCount();
-mesh.regionsCount(2);</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.regionNames">
-<code class="descclassname">Mesh.</code><code class="descname">regionNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.regionNames" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return cell array of region names</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.elemsCount">
-<code class="descclassname">Mesh.</code><code class="descname">elemsCount</code><span class="sig-paren">(</span><em>varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.elemsCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return number of elements.
-If no argument given then return total number of elements in the
-mesh. Otherwise return number of elements mathing give selection
-cirteria
-Example:
-mesh.elemsCount();
-mesh.elemsCount(struct(‘dim’, 2));</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.elemsCenters">
-<code class="descclassname">Mesh.</code><code class="descname">elemsCenters</code><span class="sig-paren">(</span><em>elemsID</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.elemsCenters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return shared array of face coordinates.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.faceCenters">
-<code class="descclassname">Mesh.</code><code class="descname">faceCenters</code><span class="sig-paren">(</span><em>faces</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.faceCenters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return shared array of face coordinates.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.edgeCenters">
-<code class="descclassname">Mesh.</code><code class="descname">edgeCenters</code><span class="sig-paren">(</span><em>edges</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.edgeCenters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return shared array of edge coordinates.
-Caution: Current implementation works only for straight edges;</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.write">
-<code class="descclassname">Mesh.</code><code class="descname">write</code><span class="sig-paren">(</span><em>filePath</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes mesh in GMSH format to specified file</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.submeshFromRegions">
-<code class="descclassname">Mesh.</code><code class="descname">submeshFromRegions</code><span class="sig-paren">(</span><em>regionNames</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.submeshFromRegions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create mesh from specified regions.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Vertex2Vertex">
-<code class="descclassname">Mesh.</code><code class="descname">Vertex2Vertex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Vertex2Vertex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Vertex2Edge">
-<code class="descclassname">Mesh.</code><code class="descname">Vertex2Edge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Vertex2Edge" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Vertex2Face">
-<code class="descclassname">Mesh.</code><code class="descname">Vertex2Face</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Vertex2Face" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Vertex2Cell">
-<code class="descclassname">Mesh.</code><code class="descname">Vertex2Cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Vertex2Cell" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Edge2Vertex_1D">
-<code class="descclassname">Mesh.</code><code class="descname">Edge2Vertex_1D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Edge2Vertex_1D" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Edge2Vertex_2D">
-<code class="descclassname">Mesh.</code><code class="descname">Edge2Vertex_2D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Edge2Vertex_2D" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Edge2Edge">
-<code class="descclassname">Mesh.</code><code class="descname">Edge2Edge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Edge2Edge" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Edge2Face">
-<code class="descclassname">Mesh.</code><code class="descname">Edge2Face</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Edge2Face" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Edge2Cell">
-<code class="descclassname">Mesh.</code><code class="descname">Edge2Cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Edge2Cell" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Face2Vertex">
-<code class="descclassname">Mesh.</code><code class="descname">Face2Vertex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Face2Vertex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Face2Edge">
-<code class="descclassname">Mesh.</code><code class="descname">Face2Edge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Face2Edge" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Face2Face">
-<code class="descclassname">Mesh.</code><code class="descname">Face2Face</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Face2Face" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Face2Cell">
-<code class="descclassname">Mesh.</code><code class="descname">Face2Cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Face2Cell" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Cell2Vertex">
-<code class="descclassname">Mesh.</code><code class="descname">Cell2Vertex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Cell2Vertex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Cell2Edge">
-<code class="descclassname">Mesh.</code><code class="descname">Cell2Edge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Cell2Edge" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Cell2Face">
-<code class="descclassname">Mesh.</code><code class="descname">Cell2Face</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Cell2Face" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.Cell2Cell">
-<code class="descclassname">Mesh.</code><code class="descname">Cell2Cell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.Cell2Cell" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.getAdjacencyUpdaters">
-<code class="descclassname">Mesh.</code><code class="descname">getAdjacencyUpdaters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.getAdjacencyUpdaters" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.findElems">
-<code class="descclassname">Mesh.</code><code class="descname">findElems</code><span class="sig-paren">(</span><em>selector</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.findElems" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return ID of elements matching give selection cirteria</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>selector - structure with values of search fileds.
-Supported selector fields are:<ul>
-<li>dim - element topological dimension</li>
-<li>geom - ID of geometric entity the elment is contained in</li>
-<li>region - ID of region element belongs to</li>
-<li>type - integer corresponging to element type</li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-<p>If more than one selector field is specified then element must match
-all field values to be selected.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="packages.+mp.Mesh.findRegions">
-<code class="descclassname">Mesh.</code><code class="descname">findRegions</code><span class="sig-paren">(</span><em>selector</em><span class="sig-paren">)</span><a class="headerlink" href="#packages.+mp.Mesh.findRegions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrun ID of regions matching given selection criteria.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>selector - structure with values of search fields.
-Supported selector fields are:<ul>
-<li>dim - topological dimension</li>
-<li>name - exact match for region name</li>
-<li>regexp - regular expression to match region name</li>
-<li>id - region id</li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
+<blockquote>
+<div>ala alal
+x.. automethod:: Mesh.setParent
+x.. automethod:: Mesh.cellTypes
+x.. automethod:: Mesh.faceEdgeOrient
+x.. automethod:: Mesh.getAdjacency
+x.. automethod:: Mesh.updateAdjacency
+x.. automethod:: Mesh.elemNodes
+x.. automethod:: Mesh.countNodes
+x.. automethod:: Mesh.countFaces
+x.. automethod:: Mesh.countEdges
+x.. automethod:: Mesh.countRegions
+x.. automethod:: Mesh.regionNames
+x.. automethod:: Mesh.countElems
+x.. automethod:: Mesh.elemsCenters
+x.. automethod:: Mesh.faceCenters
+x.. automethod:: Mesh.edgeCenters
+x.. automethod:: Mesh.write
+x.. automethod:: Mesh.submeshFromRegions
+x.. automethod:: Mesh.Vertex2Vertex
+x.. automethod:: Mesh.Vertex2Edge
+x.. automethod:: Mesh.Vertex2Face
+x.. automethod:: Mesh.Vertex2Cell
+x.. automethod:: Mesh.Edge2Vertex_1D
+x.. automethod:: Mesh.Edge2Vertex_2D
+x.. automethod:: Mesh.Edge2Edge
+x.. automethod:: Mesh.Edge2Face
+x.. automethod:: Mesh.Edge2Cell
+x.. automethod:: Mesh.Face2Vertex
+x.. automethod:: Mesh.Face2Edge
+x.. automethod:: Mesh.Face2Face
+x.. automethod:: Mesh.Face2Cell
+x.. automethod:: Mesh.Cell2Vertex
+x.. automethod:: Mesh.Cell2Edge
+x.. automethod:: Mesh.Cell2Face
+x.. automethod:: Mesh.Cell2Cell
+x.. automethod:: Mesh.getAdjacencyUpdaters
+x.. automethod:: Mesh.findElems
+x.. automethod:: Mesh.findRegions</div></blockquote>
 </div>
 </div>
 <div class="section" id="properties">

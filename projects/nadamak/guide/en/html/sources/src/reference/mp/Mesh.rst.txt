@@ -23,43 +23,44 @@ Constructors
 
 Reading and writing
 """""""""""""""""""
-.. automethod:: Mesh.setParent
-.. automethod:: Mesh.cellTypes
-.. automethod:: Mesh.faceEdgeOrient
-.. automethod:: Mesh.getAdjacency
-.. automethod:: Mesh.updateAdjacency
-.. automethod:: Mesh.elemNodes
-.. automethod:: Mesh.nodesCount
-.. automethod:: Mesh.facesCount
-.. automethod:: Mesh.edgesCount
-.. automethod:: Mesh.regionsCount
-.. automethod:: Mesh.regionNames
-.. automethod:: Mesh.elemsCount
-.. automethod:: Mesh.elemsCenters 
-.. automethod:: Mesh.faceCenters 
-.. automethod:: Mesh.edgeCenters 
-.. automethod:: Mesh.write
-.. automethod:: Mesh.submeshFromRegions
-.. automethod:: Mesh.Vertex2Vertex
-.. automethod:: Mesh.Vertex2Edge
-.. automethod:: Mesh.Vertex2Face
-.. automethod:: Mesh.Vertex2Cell
-.. automethod:: Mesh.Edge2Vertex_1D
-.. automethod:: Mesh.Edge2Vertex_2D
-.. automethod:: Mesh.Edge2Edge
-.. automethod:: Mesh.Edge2Face
-.. automethod:: Mesh.Edge2Cell
-.. automethod:: Mesh.Face2Vertex
-.. automethod:: Mesh.Face2Edge
-.. automethod:: Mesh.Face2Face
-.. automethod:: Mesh.Face2Cell
-.. automethod:: Mesh.Cell2Vertex
-.. automethod:: Mesh.Cell2Edge
-.. automethod:: Mesh.Cell2Face
-.. automethod:: Mesh.Cell2Cell
-.. automethod:: Mesh.getAdjacencyUpdaters
-.. automethod:: Mesh.findElems
-.. automethod:: Mesh.findRegions
+  ala alal
+  x.. automethod:: Mesh.setParent
+  x.. automethod:: Mesh.cellTypes
+  x.. automethod:: Mesh.faceEdgeOrient
+  x.. automethod:: Mesh.getAdjacency
+  x.. automethod:: Mesh.updateAdjacency
+  x.. automethod:: Mesh.elemNodes
+  x.. automethod:: Mesh.countNodes
+  x.. automethod:: Mesh.countFaces
+  x.. automethod:: Mesh.countEdges
+  x.. automethod:: Mesh.countRegions
+  x.. automethod:: Mesh.regionNames
+  x.. automethod:: Mesh.countElems
+  x.. automethod:: Mesh.elemsCenters 
+  x.. automethod:: Mesh.faceCenters 
+  x.. automethod:: Mesh.edgeCenters 
+  x.. automethod:: Mesh.write
+  x.. automethod:: Mesh.submeshFromRegions
+  x.. automethod:: Mesh.Vertex2Vertex
+  x.. automethod:: Mesh.Vertex2Edge
+  x.. automethod:: Mesh.Vertex2Face
+  x.. automethod:: Mesh.Vertex2Cell
+  x.. automethod:: Mesh.Edge2Vertex_1D
+  x.. automethod:: Mesh.Edge2Vertex_2D
+  x.. automethod:: Mesh.Edge2Edge
+  x.. automethod:: Mesh.Edge2Face
+  x.. automethod:: Mesh.Edge2Cell
+  x.. automethod:: Mesh.Face2Vertex
+  x.. automethod:: Mesh.Face2Edge
+  x.. automethod:: Mesh.Face2Face
+  x.. automethod:: Mesh.Face2Cell
+  x.. automethod:: Mesh.Cell2Vertex
+  x.. automethod:: Mesh.Cell2Edge
+  x.. automethod:: Mesh.Cell2Face
+  x.. automethod:: Mesh.Cell2Cell
+  x.. automethod:: Mesh.getAdjacencyUpdaters
+  x.. automethod:: Mesh.findElems
+  x.. automethod:: Mesh.findRegions
 
 Properties
 ^^^^^^^^^^
