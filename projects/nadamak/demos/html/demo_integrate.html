@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>demo_integrate</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-07-06"><meta name="DC.source" content="demo_integrate.m"><style type="text/css">
+      --><title>demo_integrate</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-07-07"><meta name="DC.source" content="demo_integrate.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -85,8 +85,8 @@ internalNodes = find(nodesTag==1);
 
 boundaryPts = mesh.nodes(boundaryNodes, :);
 
-radius = L*ones(mesh.nodesCount(), 1);
-</pre><h2 id="6">Iterate over elements and calculate maximum allowabel radius</h2><pre class="codeinput"><span class="keyword">for</span> i=1:mesh.elemsCount()
+radius = L*ones(mesh.countNodes(), 1);
+</pre><h2 id="6">Iterate over elements and calculate maximum allowabel radius</h2><pre class="codeinput"><span class="keyword">for</span> i=1:mesh.countElems()
   nodes = mesh.elemNodes(i);
   nen = length(nodes);
   pairs = combnk(1:nen, 2);
@@ -99,15 +99,15 @@ radius = L*ones(mesh.nodesCount(), 1);
 
 radius = 0.3*radius;
 radius(boundaryNodes) = 0.0;
-direction = 2*pi*rand(mesh.nodesCount(), 1);
-distance = radius.*(0.5+0.5*rand(mesh.nodesCount(),1));
+direction = 2*pi*rand(mesh.countNodes(), 1);
+distance = radius.*(0.5+0.5*rand(mesh.countNodes(),1));
 u = distance.*[cos(direction), sin(direction)];
 
 gmap = mesh.geomTrans();
 quadrature = mp.IM.Triangle(2);
 
 s = 0.0;
-<span class="keyword">for</span> i=1:mesh.perDimCount(mesh.dim)
+<span class="keyword">for</span> i=1:mesh.countPerDim(mesh.dim)
   J = gmap.volumeForm(quadrature.pts, i, u);
   s = s+dot(J,quadrature.w);
 <span class="keyword">end</span>
@@ -154,9 +154,9 @@ internalNodes = find(nodesTag==1);
 
 boundaryPts = mesh.nodes(boundaryNodes, :);
 
-radius = L*ones(mesh.nodesCount(), 1);
+radius = L*ones(mesh.countNodes(), 1);
 %% Iterate over elements and calculate maximum allowabel radius
-for i=1:mesh.elemsCount() 
+for i=1:mesh.countElems() 
   nodes = mesh.elemNodes(i);
   nen = length(nodes);
   pairs = combnk(1:nen, 2);
@@ -169,15 +169,15 @@ end
 
 radius = 0.3*radius;
 radius(boundaryNodes) = 0.0;
-direction = 2*pi*rand(mesh.nodesCount(), 1);
-distance = radius.*(0.5+0.5*rand(mesh.nodesCount(),1));
+direction = 2*pi*rand(mesh.countNodes(), 1);
+distance = radius.*(0.5+0.5*rand(mesh.countNodes(),1));
 u = distance.*[cos(direction), sin(direction)];
 
 gmap = mesh.geomTrans();
 quadrature = mp.IM.Triangle(2);
 
 s = 0.0;
-for i=1:mesh.perDimCount(mesh.dim)
+for i=1:mesh.countPerDim(mesh.dim)
   J = gmap.volumeForm(quadrature.pts, i, u);
   s = s+dot(J,quadrature.w);
 end

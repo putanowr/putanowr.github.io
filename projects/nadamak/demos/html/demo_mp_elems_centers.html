@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Calculate and highlight elements centers</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-07-06"><meta name="DC.source" content="demo_mp_elems_centers.m"><style type="text/css">
+      --><title>Calculate and highlight elements centers</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-07-07"><meta name="DC.source" content="demo_mp_elems_centers.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -73,10 +73,10 @@ mesh = mesher.generate(geom, struct(<span class="string">'lc'</span>, 0.4));
 viewer = mp.Viewer();
 viewer.show(mesh);
 </pre><img vspace="5" hspace="5" src="demo_mp_elems_centers_01.png" alt=""> <h2 id="3">Calculate elements centers</h2><p>Pre-allocate vectors for element centers for efficiency reason</p><pre class="codeinput">elemsSelector.dim = 2;
-nElems2D = mesh.elemsCount(elemsSelector)
+nElems2D = mesh.countElems(elemsSelector)
 x2 = zeros(1, nElems2D); y2 = x2;
 elemsSelector.dim = 1;
-nElems1D = mesh.elemsCount(elemsSelector)
+nElems1D = mesh.countElems(elemsSelector)
 x1 = zeros(1, nElems1D); y1 = x1;
 <span class="comment">% Set countes of 1D and 2D elements to zero</span>
 i1=0;
@@ -134,10 +134,10 @@ viewer.show(mesh);
 %% 
 % Pre-allocate vectors for element centers for efficiency reason
 elemsSelector.dim = 2;
-nElems2D = mesh.elemsCount(elemsSelector)
+nElems2D = mesh.countElems(elemsSelector)
 x2 = zeros(1, nElems2D); y2 = x2;
 elemsSelector.dim = 1;
-nElems1D = mesh.elemsCount(elemsSelector)
+nElems1D = mesh.countElems(elemsSelector)
 x1 = zeros(1, nElems1D); y1 = x1;
 % Set countes of 1D and 2D elements to zero
 i1=0;
