@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "FEMDK - Finite Element Method Development Kit"
+title: "FEMDK"
 permalink: /femdk/ 
 ---
 
