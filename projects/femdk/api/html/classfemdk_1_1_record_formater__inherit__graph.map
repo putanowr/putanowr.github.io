@@ -1,0 +1,6 @@
+<map id="femdk::RecordFormater" name="femdk::RecordFormater">
+<area shape="rect" id="node2" href="$classfemdk_1_1_convex_basic_formater.html" title="femdk::ConvexBasicFormater" alt="" coords="15,80,207,107"/>
+<area shape="rect" id="node4" href="$classfemdk_1_1_point_basic_formater.html" title="PointBasicFormater encapsulates formating of point (mesh vertex) coordinates when writing to a stream..." alt="" coords="234,80,413,107"/>
+<area shape="rect" id="node3" href="$classfemdk_1_1_convex_tochnog_formater.html" title="femdk::ConvexTochnogFormater" alt="" coords="5,155,215,181"/>
+<area shape="rect" id="node5" href="$classfemdk_1_1_point_o_f_f_formater.html" title="femdk::PointOFFFormater" alt="" coords="239,155,411,181"/>
+</map>
